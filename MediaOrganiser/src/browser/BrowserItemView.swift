@@ -14,11 +14,9 @@ struct BrowserItemView: View {
     let type : EFileType
     let group : EFileGroup
     
-    let fileProvider : BrowserFileService = BrowserFileService()
-    
     var body: some View {
         HStack {
-            FileGroupCircleView(fileGroup: EFileGroup.red)
+            FileGroupCircleView(fileGroup: group)
             VStack(alignment: .leading) {
                 Text(name)
                 Text(path).foregroundColor(.gray).font(.subheadline)
@@ -26,11 +24,12 @@ struct BrowserItemView: View {
             Spacer()
             HStack {
                 Text(type.rawValue.uppercased()).foregroundColor(.gray)
+                /*
                 Button(action: {
                     
                 }) {
                     Image(systemName: "plus.app.fill").resizable().foregroundColor(.blue).frame(width: 30, height: 30, alignment: .center)
-                }.buttonStyle(PlainButtonStyle())
+                }.buttonStyle(PlainButtonStyle())*/
             }
         }
     }

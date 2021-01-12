@@ -7,7 +7,8 @@
 
 import Foundation
 
-class BrowserFile : Identifiable {
+struct BrowserFile : Hashable, Identifiable {
+    
     let id = UUID()
     let name : String
     let path : String
@@ -26,7 +27,7 @@ class BrowserFile : Identifiable {
         self.name = ""
         self.path = ""
         self.size = 0
-        self.type = EFileType.mp3
-        self.group = EFileGroup.red
+        self.type = EFileType.unknown
+        self.group = EFileGroup.none
     }
 }

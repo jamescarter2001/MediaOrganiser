@@ -9,15 +9,22 @@ import SwiftUI
 
 struct BrowserView: View {
     
-    let browserData : [BrowserFile]
+    @State var browserData : [BrowserFile]
+    @State var selection = Set<BrowserFile>()
     
     var body: some View {
         if (browserData.count != 0) {
-        List {
-            ForEach(browserData) { item in
-                BrowserItemView(name: item.name, path: item.path, type: item.type, group: item.group)
+            List(browserData, id: \.self, selection: $selection) { item in
+                BrowserItemView(name: item.name, path: item.path, type: item.type, group: item.group).contextMenu {
+                    Menu("Add to Group") {
+                        ForEach(EFileGroup.allCases, id: \.self) { i in
+                            if (i != EFileGroup.none) {
+                            Text(i.rawValue.capitalized)
+                            }
+                        }
+                    }
                 }
-            }
+            }.listStyle(SidebarListStyle())
         } else {
             Image(systemName: "folder").resizable().scaledToFit().frame(width: 100, height: 100, alignment: .center).foregroundColor(.gray)
             Text("No matching files found in the selected directory.")
