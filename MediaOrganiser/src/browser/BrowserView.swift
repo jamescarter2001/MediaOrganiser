@@ -9,7 +9,8 @@ import SwiftUI
 
 struct BrowserView: View {
     
-    @State var browserData : [BrowserFile]
+    let browserData : [BrowserFile]
+    
     @State var selection = Set<BrowserFile>()
     
     var body: some View {

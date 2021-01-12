@@ -89,13 +89,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A2B807525ADB055000073E4 /* context */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = context;
-			sourceTree = "<group>";
-		};
 		1A39B8FD25AB3429001C7D23 /* browser */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,7 +178,6 @@
 		1AA9D3F325AB30EA00F86F2C /* src */ = {
 			isa = PBXGroup;
 			children = (
-				1A2B807525ADB055000073E4 /* context */,
 				1A46C24925ACF1DB00514318 /* sidebar */,
 				1AA9D39925AA132D00F86F2C /* MediaOrganiserApp.swift */,
 				1AA9D39B25AA132D00F86F2C /* ContentView.swift */,
