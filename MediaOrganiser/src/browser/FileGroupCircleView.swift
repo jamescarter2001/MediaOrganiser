@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-let groupColorDict : [EFileGroup:Color] = [EFileGroup.red:Color.red, EFileGroup.blue:Color.blue, EFileGroup.green:Color.green, EFileGroup.purple:Color.purple];
+let groupColorDict : [EFileGroup:Color] = [EFileGroup.red:Color.red, EFileGroup.blue:Color.blue, EFileGroup.green:Color.green, EFileGroup.purple:Color.purple,
+    EFileGroup.none:Color.gray];
 
 struct FileGroupCircleView: View {
     
     let fileGroup : EFileGroup
     
     var body: some View {
-        Circle().fill(groupColorDict[fileGroup] ?? Color.red).frame(width: 10, height: 10)
+        Circle().fill(groupColorDict[fileGroup] ?? Color.gray).frame(width: 10, height: 10)
     }
 }
 
