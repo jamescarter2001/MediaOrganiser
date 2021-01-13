@@ -22,10 +22,10 @@ class BrowserFileService {
                 let attr = try FileManager.default.attributesOfItem(atPath: item.path)
                 let fileType = EFileType(rawValue: item.pathExtension) ?? EFileType.unknown
                 
-                //, size: attr[FileAttributeKey.size] as! UInt64
+                //,
                 
                 if (fileType != EFileType.unknown) {
-                var file : BrowserFile = BrowserFile(name: item.lastPathComponent, path: item.path, type: fileType, group: EFileGroup.none)
+                    var file : BrowserFile = BrowserFile(name: item.lastPathComponent, path: item.path, size: attr[FileAttributeKey.size] as! UInt64, type: fileType, group: EFileGroup.none)
                     
                     groupMembers.forEach { member in
                         if (member.path == file.path) {

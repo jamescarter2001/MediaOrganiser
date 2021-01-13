@@ -17,9 +17,6 @@ struct ContentView: View {
     
     var body: some View {
         let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.data)
-        ForEach (userData.data, id: \.self) { i in
-        //Text("\(i.name)")
-        }
         NavigationView {
             List {
                 NavigationLink(destination: BrowserView(browserData: browserData)) {
@@ -45,12 +42,13 @@ struct ContentView: View {
             }) {
                 Image(systemName: "folder")
             }
+            #if DEBUG
             Button(action: {
-                userData.data.append(BrowserFile(name: "BBBB", path: "BB/BB/BB", type: EFileType.mp3, group: EFileGroup.blue))
-                userData.objectWillChange.send()
+                
             }) {
-                Image(systemName: "pencil.and.outline")
-            }
+                Image(systemName: "exclamationmark.square")
+            }.foregroundColor(.orange)
+            #endif
         }
     }
 }

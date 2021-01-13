@@ -12,7 +12,7 @@ import Combine
 class UserData : ObservableObject {
     var didChange = PassthroughSubject<UserData, Never>()
     
-    var data : [BrowserFile] = [BrowserFile(name: "AAAA", path: "AA/AA/AA", type: EFileType.mp3, group: EFileGroup.red)] {
+    var data : [BrowserFile] = [] {
         didSet {
             didChange.send(self)
         }
