@@ -17,7 +17,7 @@ struct BrowserView: View {
     var body: some View {
         if (browserData.count != 0) {
             List(browserData, id: \.self, selection: $selection) { item in
-                BrowserItemView(name: item.name, path: item.path,size: item.size, type: item.type, group: item.group).contextMenu {
+                BrowserItemView(name: item.name, path: item.path, size: item.size, type: item.type, group: item.group).contextMenu {
                     Menu("Add to Group") {
                         ForEach(EFileGroup.allCases, id: \.self) { i in
                             if (i != EFileGroup.none) {

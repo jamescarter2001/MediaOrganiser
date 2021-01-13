@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A2B809825ADC4BA000073E4 /* GroupManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B809725ADC4BA000073E4 /* GroupManagerService.swift */; };
 		1A2B809D25AE2890000073E4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B809C25AE2890000073E4 /* UserData.swift */; };
 		1A46C25625ACFD2F00514318 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C25525ACFD2F00514318 /* WelcomeView.swift */; };
 		1A67F61C25AB3CDA00706E98 /* BrowserFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67F61B25AB3CDA00706E98 /* BrowserFile.swift */; };
@@ -43,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A2B809725ADC4BA000073E4 /* GroupManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManagerService.swift; sourceTree = "<group>"; };
 		1A2B809C25AE2890000073E4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		1A46C25525ACFD2F00514318 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		1A67F61B25AB3CDA00706E98 /* BrowserFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserFile.swift; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 		1A2B809325ADC40B000073E4 /* group */ = {
 			isa = PBXGroup;
 			children = (
-				1A2B809725ADC4BA000073E4 /* GroupManagerService.swift */,
 			);
 			path = group;
 			sourceTree = "<group>";
@@ -331,7 +328,6 @@
 				1A46C25625ACFD2F00514318 /* WelcomeView.swift in Sources */,
 				1A2B809D25AE2890000073E4 /* UserData.swift in Sources */,
 				1A67F61C25AB3CDA00706E98 /* BrowserFile.swift in Sources */,
-				1A2B809825ADC4BA000073E4 /* GroupManagerService.swift in Sources */,
 				1AA9D3E225AB2E1A00F86F2C /* EFileGroup.swift in Sources */,
 				1AA9D39C25AA132D00F86F2C /* ContentView.swift in Sources */,
 				1AA9D39A25AA132D00F86F2C /* MediaOrganiserApp.swift in Sources */,

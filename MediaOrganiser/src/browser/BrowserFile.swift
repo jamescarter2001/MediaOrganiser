@@ -15,7 +15,7 @@ struct BrowserFile : Hashable, Equatable {
     let size : UInt64
     var group : EFileGroup
     
-    init(name : String, path : String, size:UInt64, type: EFileType, group: EFileGroup) {
+    init(name: String, path: String, size: UInt64, type: EFileType, group: EFileGroup) {
         self.name = name
         self.path = path
         self.type = type
