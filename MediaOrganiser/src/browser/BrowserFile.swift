@@ -7,26 +7,22 @@
 
 import Foundation
 
-struct BrowserFile : Hashable, Identifiable {
+struct BrowserFile : Hashable, Equatable {
     
-    let id = UUID()
     let name : String
     let path : String
-    let size : UInt64
     let type : EFileType
-    let group : EFileGroup
+    var group : EFileGroup
     
-    init(name : String, path : String, size : UInt64, type: EFileType, group: EFileGroup) {
+    init(name : String, path : String, type: EFileType, group: EFileGroup) {
         self.name = name
         self.path = path
-        self.size = size
         self.type = type
         self.group = group
     }
     init() {
         self.name = ""
         self.path = ""
-        self.size = 0
         self.type = EFileType.unknown
         self.group = EFileGroup.none
     }
