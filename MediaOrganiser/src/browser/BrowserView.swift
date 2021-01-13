@@ -11,7 +11,7 @@ struct BrowserView: View {
     
     let browserData : [BrowserFile]
     
-    @State var selectedFiles = Set<BrowserFile>()
+    @State var selectedFiles  = Set<BrowserFile>()
     @EnvironmentObject var userData : UserData
     
     var body: some View {
@@ -25,12 +25,14 @@ struct BrowserView: View {
                         ForEach(EFileGroup.allCases, id: \.self) { i in
                             if (i != EFileGroup.none) {
                                 Button(action: {
+                                    print(selectedFiles)
                                     selectedFiles.forEach { selection in
                                     var item = selection
                                         item.group = i
                                     userData.data.append(item)
                                     }
                                     userData.objectWillChange.send()
+                                    selectedFiles = Set<BrowserFile>()
                                 }) {
                             Text(i.rawValue.capitalized)
                                 }

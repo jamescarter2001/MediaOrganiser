@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BrowserFile : Hashable, Equatable {
+struct BrowserFile : Hashable, Equatable, Codable {
     
     let name : String
     let path : String

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BrowserFileService {
+class SystemBrowserFileService {
     
     func getForPath(path : String, groupMembers : [BrowserFile]) -> [BrowserFile] {
         
