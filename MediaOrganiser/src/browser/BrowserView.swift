@@ -25,25 +25,13 @@ struct BrowserView: View {
                     Menu("Add to Group") {
                         ForEach(EFileGroup.allCases, id: \.self) { i in
                                 Button(action: {
-                                    print(selectedFiles)
-                                    print("-----")
                                     selectedFiles.forEach { selection in
+                                        
+                                        userData.data = userData.data.filter({$0.path != selection.path})
+                                        
                                     var item = selection
                                         item.group = i
-                                        
-                                        var test : Bool = false
-                                        
-                                        userData.data.forEach { entry in
-                                            if entry.path == selection.path {
-                                                test.toggle()
-                                            }
-                                        }
-                                        
                                         userData.data.append(item)
-                                        
-                                        if (i == EFileGroup.none) {
-                                            userData.data = userData.data.filter({$0.path != selection.path})
-                                        }
                                     }
                                     selectedFiles = Set<BrowserFile>()
                                     userData.objectWillChange.send()
