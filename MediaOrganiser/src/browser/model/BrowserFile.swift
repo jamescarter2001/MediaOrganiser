@@ -29,4 +29,8 @@ struct BrowserFile : Hashable, Equatable, Codable {
         self.type = EFileType.unknown
         self.group = EFileGroup.none
     }
+    
+    func copy() -> BrowserFile {
+        return BrowserFile(name: self.name, path: self.path, size: self.size, type: self.type, group: self.group)
+    }
 }

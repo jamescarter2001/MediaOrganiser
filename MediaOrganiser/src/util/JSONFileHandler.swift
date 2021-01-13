@@ -47,9 +47,12 @@ class JSONFileHandler<T : Codable> {
         """.data(using: .utf8)!
         
         do {
+            
+            
+            
             let array : [T] = try decoder.decode([T].self, from: json)
         } catch {
-            print("Decode error")
+            print("Decode error!")
         }
     }
 }

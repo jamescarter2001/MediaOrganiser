@@ -11,7 +11,7 @@ struct BrowserView: View {
     
     let browserData : [BrowserFile]
     
-    @State var selectedFiles  = Set<BrowserFile>()
+    @State var selectedFiles = Set<BrowserFile>()
     @EnvironmentObject var userData : UserData
     
     var body: some View {
@@ -19,27 +19,40 @@ struct BrowserView: View {
         if (browserData.count != 0) {
             
             List(browserData, id: \.self, selection: $selectedFiles) { item in
-                BrowserItemView(name: item.name, path: item.path, size: item.size, type: item.type, group: item.group).contextMenu {
+                BrowserItemView(name: item.name, path: item.path, size: item.size, type: item.type, group: item.group)
+                    .contextMenu {
                     if (!selectedFiles.isEmpty) {
                     Menu("Add to Group") {
                         ForEach(EFileGroup.allCases, id: \.self) { i in
-                            if (i != EFileGroup.none) {
                                 Button(action: {
                                     print(selectedFiles)
+                                    print("-----")
                                     selectedFiles.forEach { selection in
                                     var item = selection
                                         item.group = i
-                                    userData.data.append(item)
+                                        
+                                        var test : Bool = false
+                                        
+                                        userData.data.forEach { entry in
+                                            if entry.path == selection.path {
+                                                test.toggle()
+                                            }
+                                        }
+                                        
+                                        userData.data.append(item)
+                                        
+                                        if (i == EFileGroup.none) {
+                                            userData.data = userData.data.filter({$0.path != selection.path})
+                                        }
                                     }
-                                    userData.objectWillChange.send()
                                     selectedFiles = Set<BrowserFile>()
+                                    userData.objectWillChange.send()
                                 }) {
                             Text(i.rawValue.capitalized)
                                 }
                             }
                         }
                     }
-                }
                 }
             }.listStyle(SidebarListStyle())
         } else {
