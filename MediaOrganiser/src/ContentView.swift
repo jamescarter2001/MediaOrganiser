@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-let test : [String] = ["tray"]
-
 struct ContentView: View {
     
     @State var currentDirectory : String = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path
     
+    @EnvironmentObject var userData : UserData
+    
     let browserFileService : BrowserFileService = BrowserFileService()
     
     var body: some View {
+        let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.data)
         NavigationView {
             List {
-                NavigationLink(destination: BrowserView(browserData: browserFileService.getForPath(path: currentDirectory))) {
+                NavigationLink(destination: BrowserView(browserData: browserData)) {
                     Image(systemName: "tray")
                         Text("System Browser")
                 }
@@ -41,6 +42,13 @@ struct ContentView: View {
             }) {
                 Image(systemName: "folder")
             }
+            #if DEBUG
+            Button(action: {
+                
+            }) {
+                Image(systemName: "exclamationmark.square")
+            }.foregroundColor(.orange)
+            #endif
         }
     }
 }

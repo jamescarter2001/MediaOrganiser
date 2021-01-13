@@ -11,6 +11,7 @@ struct BrowserItemView: View {
     
     let name : String
     let path : String
+    let size : UInt64
     let type : EFileType
     let group : EFileGroup
     
@@ -23,7 +24,8 @@ struct BrowserItemView: View {
             }
             Spacer()
             HStack {
-                Text(type.rawValue.uppercased()).foregroundColor(.gray)
+                Text("\(size / (1024)) KB").foregroundColor(.gray)
+                Text(type.rawValue.uppercased()).foregroundColor(.gray).frame(width: 40, height: 8,alignment: .trailing)
                 /*
                 Button(action: {
                     
@@ -37,6 +39,6 @@ struct BrowserItemView: View {
 
 struct BrowserListItem_Previews: PreviewProvider {
     static var previews: some View {
-        BrowserItemView(name: "AAAA",path:"/Users/james/Documents" , type: EFileType.mp3, group: EFileGroup.red)
+        BrowserItemView(name: "AAAA",path:"/Users/james/Documents", size:10, type: EFileType.mp3, group: EFileGroup.red)
     }
 }

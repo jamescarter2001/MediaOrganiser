@@ -9,19 +9,10 @@ import Foundation
 
 class BrowserFileService {
     
-    var dict = [EFileGroup:BrowserFile]()
-    
-    init() {
-        EFileType.allCases.forEach { i in
-            print(i)
-            }
-        }
-    
-    func getForPath(path : String) -> [BrowserFile] {
+    func getForPath(path : String, groupMembers : [BrowserFile]) -> [BrowserFile] {
         
         // Prevent crashes with spaced folder names.
         let encodedPath = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        print(encodedPath)
         let pathUrl = URL(string: encodedPath!)!
         var files : [BrowserFile] = []
         
@@ -31,8 +22,16 @@ class BrowserFileService {
                 let attr = try FileManager.default.attributesOfItem(atPath: item.path)
                 let fileType = EFileType(rawValue: item.pathExtension) ?? EFileType.unknown
                 
+                //,
+                
                 if (fileType != EFileType.unknown) {
-                let file : BrowserFile = BrowserFile(name: item.lastPathComponent, path: item.path, size: attr[FileAttributeKey.size] as! UInt64, type: fileType, group: EFileGroup.none)
+                    var file : BrowserFile = BrowserFile(name: item.lastPathComponent, path: item.path, size: attr[FileAttributeKey.size] as! UInt64, type: fileType, group: EFileGroup.none)
+                    
+                    groupMembers.forEach { member in
+                        if (member.path == file.path) {
+                            file.group = member.group
+                        }
+                    }
                 files.append(file)
                 }
             }

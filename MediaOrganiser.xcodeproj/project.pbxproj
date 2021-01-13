@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2B809D25AE2890000073E4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B809C25AE2890000073E4 /* UserData.swift */; };
 		1A46C25625ACFD2F00514318 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C25525ACFD2F00514318 /* WelcomeView.swift */; };
 		1A67F61C25AB3CDA00706E98 /* BrowserFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67F61B25AB3CDA00706E98 /* BrowserFile.swift */; };
 		1A67F62125AB400E00706E98 /* BrowserFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67F62025AB400E00706E98 /* BrowserFileService.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A2B809C25AE2890000073E4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		1A46C25525ACFD2F00514318 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		1A67F61B25AB3CDA00706E98 /* BrowserFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserFile.swift; sourceTree = "<group>"; };
 		1A67F62025AB400E00706E98 /* BrowserFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserFileService.swift; sourceTree = "<group>"; };
@@ -89,6 +91,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A2B809325ADC40B000073E4 /* group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = group;
+			sourceTree = "<group>";
+		};
 		1A39B8FD25AB3429001C7D23 /* browser */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,15 +106,9 @@
 				1A67F62025AB400E00706E98 /* BrowserFileService.swift */,
 				1AA9D3CD25AA8B8600F86F2C /* BrowserView.swift */,
 				1AA9D3D225AB284E00F86F2C /* BrowserItemView.swift */,
+				1A2B809C25AE2890000073E4 /* UserData.swift */,
 			);
 			path = browser;
-			sourceTree = "<group>";
-		};
-		1A46C24925ACF1DB00514318 /* sidebar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = sidebar;
 			sourceTree = "<group>";
 		};
 		1AA9D38D25AA132D00F86F2C = {
@@ -178,7 +181,7 @@
 		1AA9D3F325AB30EA00F86F2C /* src */ = {
 			isa = PBXGroup;
 			children = (
-				1A46C24925ACF1DB00514318 /* sidebar */,
+				1A2B809325ADC40B000073E4 /* group */,
 				1AA9D39925AA132D00F86F2C /* MediaOrganiserApp.swift */,
 				1AA9D39B25AA132D00F86F2C /* ContentView.swift */,
 				1A39B8FD25AB3429001C7D23 /* browser */,
@@ -323,6 +326,7 @@
 				1AA9D3CE25AA8B8600F86F2C /* BrowserView.swift in Sources */,
 				1A67F62125AB400E00706E98 /* BrowserFileService.swift in Sources */,
 				1A46C25625ACFD2F00514318 /* WelcomeView.swift in Sources */,
+				1A2B809D25AE2890000073E4 /* UserData.swift in Sources */,
 				1A67F61C25AB3CDA00706E98 /* BrowserFile.swift in Sources */,
 				1AA9D3E225AB2E1A00F86F2C /* EFileGroup.swift in Sources */,
 				1AA9D39C25AA132D00F86F2C /* ContentView.swift in Sources */,
