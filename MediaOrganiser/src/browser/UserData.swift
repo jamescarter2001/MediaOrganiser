@@ -17,4 +17,10 @@ class UserData : ObservableObject {
             didChange.send(self)
         }
     }
+    
+    var displayFolderButton : Bool = false {
+        didSet {
+            didChange.send(self)
+        }
+    }
 }

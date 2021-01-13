@@ -11,6 +11,8 @@
 		1A46C25625ACFD2F00514318 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C25525ACFD2F00514318 /* WelcomeView.swift */; };
 		1A67F61C25AB3CDA00706E98 /* BrowserFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67F61B25AB3CDA00706E98 /* BrowserFile.swift */; };
 		1A67F62125AB400E00706E98 /* BrowserFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67F62025AB400E00706E98 /* BrowserFileService.swift */; };
+		1A8B02CB25AF4AA4005E5D6A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B02CA25AF4AA4005E5D6A /* MainView.swift */; };
+		1A8B02D025AF4B6B005E5D6A /* SystemBrowserContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B02CF25AF4B6B005E5D6A /* SystemBrowserContainerView.swift */; };
 		1AA9D39A25AA132D00F86F2C /* MediaOrganiserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA9D39925AA132D00F86F2C /* MediaOrganiserApp.swift */; };
 		1AA9D39C25AA132D00F86F2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA9D39B25AA132D00F86F2C /* ContentView.swift */; };
 		1AA9D39E25AA132E00F86F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA9D39D25AA132E00F86F2C /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 		1A46C25525ACFD2F00514318 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		1A67F61B25AB3CDA00706E98 /* BrowserFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserFile.swift; sourceTree = "<group>"; };
 		1A67F62025AB400E00706E98 /* BrowserFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserFileService.swift; sourceTree = "<group>"; };
+		1A8B02CA25AF4AA4005E5D6A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1A8B02CF25AF4B6B005E5D6A /* SystemBrowserContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemBrowserContainerView.swift; sourceTree = "<group>"; };
 		1AA9D39625AA132D00F86F2C /* MediaOrganiser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaOrganiser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA9D39925AA132D00F86F2C /* MediaOrganiserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaOrganiserApp.swift; sourceTree = "<group>"; };
 		1AA9D39B25AA132D00F86F2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,13 +95,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A2B809325ADC40B000073E4 /* group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = group;
-			sourceTree = "<group>";
-		};
 		1A39B8FD25AB3429001C7D23 /* browser */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,12 +178,13 @@
 		1AA9D3F325AB30EA00F86F2C /* src */ = {
 			isa = PBXGroup;
 			children = (
-				1A2B809325ADC40B000073E4 /* group */,
+				1AA9D3F225AB30C900F86F2C /* enum */,
+				1A39B8FD25AB3429001C7D23 /* browser */,
 				1AA9D39925AA132D00F86F2C /* MediaOrganiserApp.swift */,
 				1AA9D39B25AA132D00F86F2C /* ContentView.swift */,
-				1A39B8FD25AB3429001C7D23 /* browser */,
-				1AA9D3F225AB30C900F86F2C /* enum */,
 				1A46C25525ACFD2F00514318 /* WelcomeView.swift */,
+				1A8B02CA25AF4AA4005E5D6A /* MainView.swift */,
+				1A8B02CF25AF4B6B005E5D6A /* SystemBrowserContainerView.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -321,6 +319,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AA9D3D325AB284E00F86F2C /* BrowserItemView.swift in Sources */,
+				1A8B02D025AF4B6B005E5D6A /* SystemBrowserContainerView.swift in Sources */,
+				1A8B02CB25AF4AA4005E5D6A /* MainView.swift in Sources */,
 				1AA9D3D825AB2D8300F86F2C /* FileGroupCircleView.swift in Sources */,
 				1AA9D3DD25AB2DBE00F86F2C /* EFileType.swift in Sources */,
 				1AA9D3CE25AA8B8600F86F2C /* BrowserView.swift in Sources */,

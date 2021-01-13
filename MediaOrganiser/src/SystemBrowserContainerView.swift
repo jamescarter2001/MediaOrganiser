@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct SystemBrowserContainerView: View {
     
     @State var currentDirectory : String = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path
-    //@State var shouldDisplayFolderButton : Bool = true
     
     @EnvironmentObject var userData : UserData
     
@@ -18,20 +17,8 @@ struct ContentView: View {
     
     var body: some View {
         let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.data)
-        let testData = [BrowserFile(name: "AAA", path: "AA/AA", size: 10, type: EFileType.mp3, group: EFileGroup.red)]
-        NavigationView {
-            List {
-                NavigationLink(destination: BrowserView(browserData: browserData)) {
-                    Image(systemName: "tray")
-                        Text("System Browser")
-                }
-                NavigationLink(destination: BrowserView(browserData: testData)) {
-                    Image(systemName: "tray")
-                        Text("RED")
-                }
-                    }
-                    .listStyle(SidebarListStyle())
-        }.navigationTitle(Text("Media Organiser")).toolbar {
+        
+        BrowserView(browserData: browserData) .navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
             Button(action: {
                 let dialog = NSOpenPanel();
 
@@ -59,8 +46,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct SystemBrowserContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SystemBrowserContainerView()
     }
 }

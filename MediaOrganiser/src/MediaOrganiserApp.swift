@@ -13,7 +13,8 @@ struct MediaOrganiserApp: App {
         WindowGroup {
             //WelcomeView(message: "AAAA")
             //TextView()
-            ContentView().environmentObject(UserData())
+            //ContentView().environmentObject(UserData())
+            MainView().environmentObject(UserData())
         }
     }
 }
