@@ -18,7 +18,7 @@ class UserData : ObservableObject {
         }
     }
     
-    var dict : [String:[BrowserFile]] = [:] {
+    var dict : [String:[BrowserFile]] = [EFileGroup.red.rawValue:[],EFileGroup.blue.rawValue:[], EFileGroup.green.rawValue:[], EFileGroup.purple.rawValue:[]] {
         didSet {
             didChange.send(self)
         }

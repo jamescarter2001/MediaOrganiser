@@ -21,10 +21,27 @@ struct MainView: View {
                         Text("System Browser")
                     }.tag(0)
                 }
+                Section(header: Text("Categories")) {
+                    ForEach(EFileGroup.allCases, id: \.self) { group in
+                        if (group != EFileGroup.none) {
+                            NavigationLink(destination: GroupBrowserContainerView(group: group.rawValue)) {
+                                HStack {
+                                    FileGroupCircleView(fileGroup: group)
+                                        .padding(.leading, 4.0)
+                                    Text(group.rawValue.capitalized)
+                                }
+                            }
+                        }
+                    }
+                }
                 Section(header: Text("Playlists")) {
                     ForEach(Array(userData.dict.keys), id: \.self) { group in
-                        NavigationLink(destination: GroupBrowserContainerView(group: group)) {
+                        if EFileGroup(rawValue: group) != nil {
+                            
+                        } else {
+                            NavigationLink(destination: GroupBrowserContainerView(group: group)) {
                                 Text(group.capitalized)
+                            }
                         }
                     }
                 }

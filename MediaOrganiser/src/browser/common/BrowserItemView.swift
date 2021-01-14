@@ -14,10 +14,13 @@ struct BrowserItemView: View {
     let size : UInt64
     let type : EFileType
     let comment : String
+    let category : EFileGroup?
     
     var body: some View {
         HStack {
-            //FileGroupCircleView(fileGroup: group)
+           if (category != nil) {
+                FileGroupCircleView(fileGroup: category!)
+            }
             VStack(alignment: .leading) {
                 Text(name)
                 Text(path).foregroundColor(.gray).font(.subheadline)
@@ -40,6 +43,6 @@ struct BrowserItemView: View {
 
 struct BrowserListItem_Previews: PreviewProvider {
     static var previews: some View {
-        BrowserItemView(name: "AAAA",path:"/Users/james/Documents", size:10, type: EFileType.mp3, comment: "Test comment")
+        BrowserItemView(name: "AAAA",path:"/Users/james/Documents", size:10, type: EFileType.mp3, comment: "Test comment", category: EFileGroup.none)
     }
 }

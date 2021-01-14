@@ -19,11 +19,11 @@ struct ContentView: View {
         let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.dict)
         NavigationView {
             List {
-                NavigationLink(destination: BrowserView(browserData: browserData)) {
+                NavigationLink(destination: BrowserView(browserData: browserData, category: nil)) {
                     Image(systemName: "tray")
                         Text("System Browser")
                 }
-                NavigationLink(destination: BrowserView(browserData: [])) {
+                NavigationLink(destination: BrowserView(browserData: [], category: nil)) {
                     Image(systemName: "tray")
                         Text("RED")
                 }

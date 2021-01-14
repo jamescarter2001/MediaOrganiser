@@ -23,14 +23,11 @@ struct SystemBrowserContainerView: View {
         let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.dict)
         let queriedData = browserData.filter({search.isEmpty || $0.name.contains(search) || $0.path.contains(search)})
 
-        BrowserView(browserData: selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size})).navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
+        BrowserView(browserData: selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size}), category: nil).navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
             Text("Sort:").foregroundColor(.gray)
-            Picker(selection: $selection, label: Text("AAAA")) {
-                ForEach(0 ..< pickerOptions.count) {
-                    Text(pickerOptions[$0])
-                }
-            }
-            TextField("Search", text: $search).frame(width: 300, height:30).padding(EdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 0)).textFieldStyle(RoundedBorderTextFieldStyle()).help(Text("Search for files in directory"))
+            
+            QueryView(search: $search, selection: $selection)
+            
             Button(action: {
                 let dialog = NSOpenPanel();
                 
@@ -87,7 +84,6 @@ struct SystemBrowserContainerView: View {
             Button(action: {
                 userData.dict = JSONBrowserFileHandler.DecodeFile(path: "/Users/james/Desktop/output.wzstate")
                 userData.objectWillChange.send()
-                //print(userData.dict)
             }) {
                 Image(systemName: "exclamationmark.square")
             }.foregroundColor(.orange).help(Text("Debug"))
