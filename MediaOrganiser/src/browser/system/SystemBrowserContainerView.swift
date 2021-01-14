@@ -12,39 +12,85 @@ struct SystemBrowserContainerView: View {
     @State private var currentDirectory : String = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path
     @State private var search: String = ""
     
-    @EnvironmentObject var userData : UserData
+    @State private var selection : Int = 0
+    let pickerOptions = ["Alphabetically", "Size"]
+    
+    @EnvironmentObject private var userData : UserData
     
     let browserFileService : SystemBrowserFileService = SystemBrowserFileService()
     
     var body: some View {
-        let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.data)
-        let filteredData = browserData.filter({$0.name.contains(search) || $0.path.contains(search)})
-                
-        BrowserView(browserData: search.isEmpty ? browserData : filteredData ) .navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
-            TextField("Search", text: $search).frame(width: 300, height:30).padding(EdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 0)).textFieldStyle(RoundedBorderTextFieldStyle())
+        let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.dict)
+        let queriedData = browserData.filter({search.isEmpty || $0.name.contains(search) || $0.path.contains(search)})
+
+        BrowserView(browserData: selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size})).navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
+            Text("Sort:").foregroundColor(.gray)
+            Picker(selection: $selection, label: Text("AAAA")) {
+                ForEach(0 ..< pickerOptions.count) {
+                    Text(pickerOptions[$0])
+                }
+            }
+            TextField("Search", text: $search).frame(width: 300, height:30).padding(EdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 0)).textFieldStyle(RoundedBorderTextFieldStyle()).help(Text("Search for files in directory"))
             Button(action: {
                 let dialog = NSOpenPanel();
-
-                                    dialog.title                   = "Please select a directory:";
-                                    dialog.showsResizeIndicator    = true;
-                                    dialog.showsHiddenFiles        = false;
-                                    dialog.allowsMultipleSelection = false;
-                                    dialog.canChooseFiles = false;
-                                    dialog.canChooseDirectories = true;
-                                    
-                                    if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
-                                        self.currentDirectory = dialog.url!.path
-                                    }
+                
+                dialog.title                   = "Please select a directory:";
+                dialog.showsResizeIndicator    = true;
+                dialog.showsHiddenFiles        = false;
+                dialog.allowsMultipleSelection = false;
+                dialog.canChooseFiles = false;
+                dialog.canChooseDirectories = true;
+                
+                if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
+                    self.currentDirectory = dialog.url!.path
+                }
             }) {
                 Image(systemName: "folder")
-            }
+            }.help(Text("Change directory"))
+            Button(action:{
+                let dialog = NSSavePanel();
+                
+                dialog.title                   = "Please select a directory:";
+                dialog.showsResizeIndicator    = true;
+                dialog.showsHiddenFiles        = false;
+                dialog.allowedFileTypes = ["wzstate"]
+                
+                
+                if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
+                    let savePath : String = dialog.url!.path
+                    JSONBrowserFileHandler.EncodeAndSaveFile(dict: userData.dict, path: savePath)
+                }
+            }) {
+                Image(systemName: "square.and.arrow.up")
+            }.help(Text("Save state"))
+            Button(action:{
+                
+                let dialog = NSOpenPanel();
+                
+                dialog.title                   = "Please select a directory:";
+                dialog.showsResizeIndicator    = true;
+                dialog.showsHiddenFiles        = false;
+                dialog.allowedFileTypes = ["wzstate"]
+                dialog.canChooseFiles = true;
+                dialog.canChooseDirectories = false;
+                
+                if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
+                    let savePath : String = dialog.url!.path
+                    let savedDict : [String:[BrowserFile]] = JSONBrowserFileHandler.DecodeFile(path: savePath)
+                    userData.dict = savedDict
+                    userData.objectWillChange.send()
+                }
+            }) {
+                Image(systemName: "square.and.arrow.down")
+            }.help(Text("Load state"))
             #if DEBUG
             Button(action: {
-                let encoder : JSONFileHandler = JSONFileHandler<BrowserFile>()
-                encoder.encodeAndSaveFile(array: userData.data, path: "")
+                userData.dict = JSONBrowserFileHandler.DecodeFile(path: "/Users/james/Desktop/output.wzstate")
+                userData.objectWillChange.send()
+                //print(userData.dict)
             }) {
                 Image(systemName: "exclamationmark.square")
-            }.foregroundColor(.orange)
+            }.foregroundColor(.orange).help(Text("Debug"))
             #endif
         }
     }
@@ -52,6 +98,6 @@ struct SystemBrowserContainerView: View {
 
 struct SystemBrowserContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        SystemBrowserContainerView()
+        SystemBrowserContainerView().environmentObject(UserData())
     }
 }

@@ -2,14 +2,14 @@
 //  FileProvider.swift
 //  MediaOrganiser
 //
-//  Created by James on 10/01/2021.
+//  Created by James on 11/01/2021.
 //
 
 import Foundation
 
 class SystemBrowserFileService {
     
-    func getForPath(path : String, groupMembers : [BrowserFile]) -> [BrowserFile] {
+    func getForPath(path : String, groupMembers : [String:[BrowserFile]]) -> [BrowserFile] {
         
         // Prevent crashes with spaced folder names.
         let encodedPath = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -22,16 +22,23 @@ class SystemBrowserFileService {
                 let attr = try FileManager.default.attributesOfItem(atPath: item.path)
                 let fileType = EFileType(rawValue: item.pathExtension) ?? EFileType.unknown
                 
-                //,
-                
                 if (fileType != EFileType.unknown) {
-                    var file : BrowserFile = BrowserFile(name: item.lastPathComponent, path: item.path, size: attr[FileAttributeKey.size] as! UInt64, type: fileType, group: EFileGroup.none)
+                    var file : BrowserFile = BrowserFile(name: item.lastPathComponent, path: item.path, size: attr[FileAttributeKey.size] as! UInt64, type: fileType, comment:"")
                     
-                    groupMembers.forEach { member in
-                        if (member.path == file.path) {
-                            file.group = member.group
+                    let keys = Array(groupMembers.keys)
+                    
+                    for key in keys {
+                        let members = groupMembers[key]
+                        
+                        members!.forEach { i in
+                            if (i.path == file.path) {
+                                file.comment = i.comment
+                            }
                         }
+                        
                     }
+                    
+                    
                 files.append(file)
                 }
             }
@@ -40,7 +47,6 @@ class SystemBrowserFileService {
         } catch {
             print("error")
         }
-        
         return [BrowserFile()]
     }
 }

@@ -5,9 +5,11 @@
 //  Created by James on 13/01/2021.
 //
 
-/*import Foundation
+#if DEBUG
 
-class JSONFileHandler<K, V> where K : Hashable, K : Codable, V : Codable {
+import Foundation
+
+class JSONFileHandlerOld<K, V> where K : Hashable, K : Codable, V : Codable {
     
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
@@ -55,7 +57,7 @@ class JSONFileHandler<K, V> where K : Hashable, K : Codable, V : Codable {
                         var files : [BrowserFile] = []
                         
                         for file in block {
-                            let browserFile : BrowserFile = BrowserFile(name: file["name"] as! String, path: file["path"] as! String, size: file["size"] as! UInt64, type: EFileType(rawValue: file["type"] as! String) ?? EFileType.unknown, group: EFileGroup.none)
+                            let browserFile : BrowserFile = BrowserFile(name: file["name"] as! String, path: file["path"] as! String, size: file["size"] as! UInt64, type: EFileType(rawValue: file["type"] as! String) ?? EFileType.unknown, comment: file["path"] as! String)
                             
                             files.append(browserFile)
                         }
@@ -72,4 +74,5 @@ class JSONFileHandler<K, V> where K : Hashable, K : Codable, V : Codable {
         return finalDict
     }
 }
-*/
+
+#endif

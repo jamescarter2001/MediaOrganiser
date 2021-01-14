@@ -16,20 +16,17 @@ struct MainView: View {
         NavigationView {
             List(selection: $selection) {
                 Section(header: Text("System")) {
-                NavigationLink(destination: SystemBrowserContainerView()) {
-                    Image(systemName: "tray")
+                    NavigationLink(destination: SystemBrowserContainerView()) {
+                        Image(systemName: "tray")
                         Text("System Browser")
-                }.tag(0)
+                    }.tag(0)
                 }
-                Section(header: Text("Groups")) {
-                ForEach(EFileGroup.allCases, id: \.self) { group in
-                    if (group != EFileGroup.none) {
-                    NavigationLink(destination: BrowserView(browserData: userData.data.filter{$0.group == group})) {
-                        FileGroupCircleView(fileGroup: group).frame(width: 17.5, height: 17.5)
-                        Text(group.rawValue.capitalized)
+                Section(header: Text("Playlists")) {
+                    ForEach(Array(userData.dict.keys), id: \.self) { group in
+                        NavigationLink(destination: GroupBrowserContainerView(group: group)) {
+                                Text(group.capitalized)
+                        }
                     }
-                    }
-                }
                 }
             }
             Text("Select a group to begin.")
@@ -39,6 +36,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView().environmentObject(UserData())
     }
 }

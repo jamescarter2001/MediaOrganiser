@@ -2,7 +2,7 @@
 //  BrowserListItem.swift
 //  MediaOrganiser
 //
-//  Created by James on 10/01/2021.
+//  Created by James on 11/01/2021.
 //
 
 import SwiftUI
@@ -13,16 +13,17 @@ struct BrowserItemView: View {
     let path : String
     let size : UInt64
     let type : EFileType
-    let group : EFileGroup
+    let comment : String
     
     var body: some View {
         HStack {
-            FileGroupCircleView(fileGroup: group)
+            //FileGroupCircleView(fileGroup: group)
             VStack(alignment: .leading) {
                 Text(name)
                 Text(path).foregroundColor(.gray).font(.subheadline)
             }
             Spacer()
+            Text(comment).foregroundColor(.gray).multilineTextAlignment(.center)
             HStack {
                 Text("\(size / (1024)) KB").foregroundColor(.gray)
                 Text(type.rawValue.uppercased()).foregroundColor(.gray).frame(width: 40, height: 8,alignment: .trailing)
@@ -39,6 +40,6 @@ struct BrowserItemView: View {
 
 struct BrowserListItem_Previews: PreviewProvider {
     static var previews: some View {
-        BrowserItemView(name: "AAAA",path:"/Users/james/Documents", size:10, type: EFileType.mp3, group: EFileGroup.red)
+        BrowserItemView(name: "AAAA",path:"/Users/james/Documents", size:10, type: EFileType.mp3, comment: "Test comment")
     }
 }

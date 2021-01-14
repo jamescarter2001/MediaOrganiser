@@ -10,7 +10,6 @@ import Foundation
 class JSONBrowserFileHandler {
     
     static let encoder = JSONEncoder()
-    //let decoder = JSONDecoder()
     
     static func EncodeAndSaveFile(dict : [String:[BrowserFile]], path : String) {
         
@@ -20,18 +19,18 @@ class JSONBrowserFileHandler {
             let encoded : Data = try encoder.encode(dict)
             encodedString = String(data: encoded, encoding: .utf8)!
         } catch {
-            print("Error encoding array: \(dict)")
+            print("Encode error: \(error)")
         }
         
-        let filename = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("/Desktop/output.wzstate")
+        var pathUrl = URLComponents()
+        pathUrl.scheme = "file"
+        pathUrl.path = path
         
         do {
-            try encodedString.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+            try encodedString.write(to: pathUrl.url!, atomically: true, encoding: String.Encoding.utf8)
         } catch {
-            print("File write error!")
+            print("File write error: \(error)")
         }
-        
-        print(encodedString)
     }
     
     static func DecodeFile(path : String) -> [String:[BrowserFile]] {
@@ -48,25 +47,22 @@ class JSONBrowserFileHandler {
             
             let data = try String(contentsOf: testUrl.url!).data(using: .utf8)!
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-                if let test = json["AAA"] as? [[String:Any]] {
+                
                     for key in Array(json.keys) {
                         
                         let block = json[key] as! [[String:Any]]
                         var files : [BrowserFile] = []
                         
                         for file in block {
-                            let browserFile : BrowserFile = BrowserFile(name: file["name"] as! String, path: file["path"] as! String, size: file["size"] as! UInt64, type: EFileType(rawValue: file["type"] as! String) ?? EFileType.unknown, group: EFileGroup.none)
+                            let browserFile : BrowserFile = BrowserFile(name: file["name"] as! String, path: file["path"] as! String, size: file["size"] as! UInt64, type: EFileType(rawValue: file["type"] as! String) ?? EFileType.unknown, comment: file["comment"] as! String)
                             
                             files.append(browserFile)
                         }
                         finalDict[key] = files
                     }
-                } else {
-                    print("parse error")
-                }
             }
         } catch {
-            //print("Decode error: \(error)")
+            print("Decode error: \(error)")
         }
         print(finalDict)
         return finalDict

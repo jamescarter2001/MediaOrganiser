@@ -10,22 +10,20 @@ import SwiftUI
 struct ContentView: View {
     
     @State var currentDirectory : String = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path
-    //@State var shouldDisplayFolderButton : Bool = true
     
     @EnvironmentObject var userData : UserData
     
     let browserFileService : SystemBrowserFileService = SystemBrowserFileService()
     
     var body: some View {
-        let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.data)
-        let testData = [BrowserFile(name: "AAA", path: "AA/AA", size: 10, type: EFileType.mp3, group: EFileGroup.red)]
+        let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.dict)
         NavigationView {
             List {
                 NavigationLink(destination: BrowserView(browserData: browserData)) {
                     Image(systemName: "tray")
                         Text("System Browser")
                 }
-                NavigationLink(destination: BrowserView(browserData: testData)) {
+                NavigationLink(destination: BrowserView(browserData: [])) {
                     Image(systemName: "tray")
                         Text("RED")
                 }
