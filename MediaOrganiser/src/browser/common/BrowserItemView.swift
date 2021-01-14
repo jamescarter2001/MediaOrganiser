@@ -15,7 +15,7 @@ struct BrowserItemView: View {
     let type : EFileType
     let comment : String
     let category : EFileCategory?
-    var imagePath : String = ""
+    let imagePath : String
     
     var body: some View {
         HStack {
@@ -50,6 +50,6 @@ struct ImageView : View {
 
 struct BrowserListItem_Previews: PreviewProvider {
     static var previews: some View {
-        BrowserItemView(name: "AAAA",path:"/Users/james/Documents", size:10, type: EFileType.mp3, comment: "Test comment", category: EFileCategory.none)
+        BrowserItemView(name: "AAAA",path:"/Users/james/Documents", size:10, type: EFileType.mp3, comment: "Test comment", category: EFileCategory.none, imagePath: "")
     }
 }

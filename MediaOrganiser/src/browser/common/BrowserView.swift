@@ -20,7 +20,7 @@ struct BrowserView: View {
             if (browserData.count != 0) {
                 VStack {
                     List(browserData, id: \.self, selection: $selectedFiles) { item in
-                        BrowserItemView(name: item.name, path: item.path, size: item.size, type: item.type, comment: item.comment, category: category != nil ? category : nil)
+                        BrowserItemView(name: item.name, path: item.path, size: item.size, type: item.type, comment: item.comment, category: category != nil ? category : nil, imagePath: item.imagePath)
                             .contextMenu {
                                 if (!selectedFiles.isEmpty) {
                                     Section {
@@ -158,6 +158,42 @@ struct BrowserView: View {
                                             }
                                         }) {
                                             Text("Edit Comment")
+                                        }
+                                        Button(action: {
+                                            
+                                            let dialog = NSOpenPanel();
+                                            
+                                            dialog.title                   = "Please select a directory:";
+                                            dialog.showsResizeIndicator    = true;
+                                            dialog.showsHiddenFiles        = false;
+                                            dialog.allowsMultipleSelection = false;
+                                            dialog.canChooseFiles = true;
+                                            dialog.canChooseDirectories = false;
+                                            dialog.allowedFileTypes = ["png", "jpg"]
+                                            
+                                            if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
+                                                print(dialog.url!.path)
+                                                
+                                                let keys = Array(userData.groupData.keys)
+                                                
+                                                selectedFiles.forEach { i in
+                                                    for key in keys {
+                                                        
+                                                        let matchingFiles : [BrowserFile] = userData.groupData[key]!.filter({$0.path == i.path})
+                                                        
+                                                        userData.groupData[key] = userData.groupData[key]!.filter({$0.path != i.path})
+                                                        
+                                                        matchingFiles.forEach { match in
+                                                            var matchCopy = match
+                                                            matchCopy.imagePath = dialog.url!.path
+                                                            userData.groupData[key]?.append(matchCopy)
+                                                        }
+                                                    }
+                                                }
+                                                self.userData.objectWillChange.send()
+                                            }
+                                        }) {
+                                            Text("Edit Image")
                                         }
                                     }
                                 }
