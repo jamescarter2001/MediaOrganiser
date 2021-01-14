@@ -18,14 +18,10 @@ struct SystemBrowserContainerView: View {
     
     var body: some View {
         let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.data)
-        let filteredData = browserData.filter({$0.name.contains(search)})
-        
-        HStack {
-            TextField("Search", text: $search).frame(width: 300, height:20).padding(EdgeInsets(top: 5, leading: 14, bottom: 5, trailing: 0))
-            Spacer()
-        }
-        
+        let filteredData = browserData.filter({$0.name.contains(search) || $0.path.contains(search)})
+                
         BrowserView(browserData: search.isEmpty ? browserData : filteredData ) .navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
+            TextField("Search", text: $search).frame(width: 300, height:30).padding(EdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 0)).textFieldStyle(RoundedBorderTextFieldStyle())
             Button(action: {
                 let dialog = NSOpenPanel();
 
