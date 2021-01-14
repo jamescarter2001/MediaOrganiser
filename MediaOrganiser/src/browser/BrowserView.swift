@@ -21,21 +21,26 @@ struct BrowserView: View {
                 BrowserItemView(name: item.name, path: item.path, size: item.size, type: item.type, group: item.group)
                     .contextMenu {
                     if (!selectedFiles.isEmpty) {
-                    Menu("Add to Group") {
-                        ForEach(EFileGroup.allCases, id: \.self) { i in
+                    Menu("Add to Playlist") {
+                        ForEach(Array(userData.dict.keys), id: \.self) { i in
                                 Button(action: {
                                     selectedFiles.forEach { selection in
                                         
-                                        userData.data = userData.data.filter({$0.path != selection.path})
+                                        //userData.data = userData.data.filter({$0.path != selection.path})
                                         
-                                    var item = selection
+                                        var existing : [BrowserFile] = userData.dict[i] ?? []
+                                        existing.append(selection)
+                                        
+                                        userData.dict[i] = existing
+                                        
+                                    /*var item = selection
                                         item.group = i
-                                        userData.data.append(item)
+                                        userData.data.append(item)*/
                                     }
                                     selectedFiles = Set<BrowserFile>()
                                     userData.objectWillChange.send()
                                 }) {
-                            Text(i.rawValue.capitalized)
+                            Text(i.capitalized)
                                 }
                             }
                         }
