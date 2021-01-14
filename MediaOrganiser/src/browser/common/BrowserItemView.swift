@@ -14,13 +14,12 @@ struct BrowserItemView: View {
     let size : UInt64
     let type : EFileType
     let comment : String
-    let category : EFileGroup?
+    let category : EFileCategory?
+    var imagePath : String = ""
     
     var body: some View {
         HStack {
-           if (category != nil) {
-                FileGroupCircleView(fileGroup: category!)
-            }
+            ImageView(path: imagePath)
             VStack(alignment: .leading) {
                 Text(name)
                 Text(path).foregroundColor(.gray).font(.subheadline)
@@ -30,12 +29,20 @@ struct BrowserItemView: View {
             HStack {
                 Text("\(size / (1024)) KB").foregroundColor(.gray)
                 Text(type.rawValue.uppercased()).foregroundColor(.gray).frame(width: 40, height: 8,alignment: .trailing)
-                /*
-                Button(action: {
-                    
-                }) {
-                    Image(systemName: "plus.app.fill").resizable().foregroundColor(.blue).frame(width: 30, height: 30, alignment: .center)
-                }.buttonStyle(PlainButtonStyle())*/
+            }
+        }
+    }
+}
+
+struct ImageView : View {
+    let path : String
+    var body : some View {
+        if (!path.isEmpty) {
+            Image(nsImage: NSImage(contentsOfFile: path)!).resizable().frame(width: 40, height: 40)
+        } else {
+            ZStack {
+                Rectangle().frame(width: 40, height: 40).foregroundColor(Color( red: 1, green: 1, blue: 1, opacity: 0.1)).cornerRadius(3.0)
+                Image(systemName: "questionmark").frame(width: 40, height: 40)
             }
         }
     }
@@ -43,6 +50,6 @@ struct BrowserItemView: View {
 
 struct BrowserListItem_Previews: PreviewProvider {
     static var previews: some View {
-        BrowserItemView(name: "AAAA",path:"/Users/james/Documents", size:10, type: EFileType.mp3, comment: "Test comment", category: EFileGroup.none)
+        BrowserItemView(name: "AAAA",path:"/Users/james/Documents", size:10, type: EFileType.mp3, comment: "Test comment", category: EFileCategory.none)
     }
 }

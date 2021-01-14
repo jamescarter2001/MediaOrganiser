@@ -15,17 +15,16 @@ struct SystemBrowserContainerView: View {
     @State private var selection : Int = 0
     let pickerOptions = ["Alphabetically", "Size"]
     
-    @EnvironmentObject private var userData : UserData
+    @EnvironmentObject private var userData : SaveData
     
-    let browserFileService : SystemBrowserFileService = SystemBrowserFileService()
+    let systemBrowserFileService : SystemBrowserFileService = SystemBrowserFileService()
     
     var body: some View {
-        let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.dict)
+        let browserData = systemBrowserFileService.getForPath(path: currentDirectory, groupData: userData.groupData)
         let queriedData = browserData.filter({search.isEmpty || $0.name.contains(search) || $0.path.contains(search)})
 
         BrowserView(browserData: selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size}), category: nil).navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
-            Text("Sort:").foregroundColor(.gray)
-            
+
             QueryView(search: $search, selection: $selection)
             
             Button(action: {
@@ -39,6 +38,7 @@ struct SystemBrowserContainerView: View {
                 dialog.canChooseDirectories = true;
                 
                 if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
+                    print(dialog.url!.path)
                     self.currentDirectory = dialog.url!.path
                 }
             }) {
@@ -55,7 +55,7 @@ struct SystemBrowserContainerView: View {
                 
                 if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
                     let savePath : String = dialog.url!.path
-                    JSONBrowserFileHandler.EncodeAndSaveFile(dict: userData.dict, path: savePath)
+                    JSONBrowserFileHandler.EncodeAndSaveFile(dict: userData.groupData, path: savePath)
                 }
             }) {
                 Image(systemName: "square.and.arrow.up")
@@ -74,7 +74,7 @@ struct SystemBrowserContainerView: View {
                 if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
                     let savePath : String = dialog.url!.path
                     let savedDict : [String:[BrowserFile]] = JSONBrowserFileHandler.DecodeFile(path: savePath)
-                    userData.dict = savedDict
+                    userData.groupData = savedDict
                     userData.objectWillChange.send()
                 }
             }) {
@@ -82,7 +82,7 @@ struct SystemBrowserContainerView: View {
             }.help(Text("Load state"))
             #if DEBUG
             Button(action: {
-                userData.dict = JSONBrowserFileHandler.DecodeFile(path: "/Users/james/Desktop/output.wzstate")
+                userData.groupData = JSONBrowserFileHandler.DecodeFile(path: "/Users/james/Desktop/output.wzstate")
                 userData.objectWillChange.send()
             }) {
                 Image(systemName: "exclamationmark.square")
@@ -94,6 +94,6 @@ struct SystemBrowserContainerView: View {
 
 struct SystemBrowserContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        SystemBrowserContainerView().environmentObject(UserData())
+        SystemBrowserContainerView().environmentObject(SaveData())
     }
 }

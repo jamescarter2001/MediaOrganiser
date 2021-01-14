@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GroupBrowserContainerView: View {
     
-    @EnvironmentObject var userData : UserData
+    @EnvironmentObject var userData : SaveData
     @State var search : String = ""
     let group : String
     
@@ -17,11 +17,11 @@ struct GroupBrowserContainerView: View {
     let pickerOptions = ["Alphabetically", "Size"]
     
     var body: some View {
-        if (userData.dict[group] != nil) {
-            let browserData = userData.dict[group]
+        if (userData.groupData[group] != nil) {
+            let browserData = userData.groupData[group]
             let queriedData = browserData!.filter({search.isEmpty || $0.name.contains(search) || $0.path.contains(search)})
             
-            let category = EFileGroup(rawValue: group)
+            let category = EFileCategory(rawValue: group)
             BrowserView(browserData: (selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size})) , category: category != nil ? category : nil).toolbar {
                 QueryView(search: $search, selection: $selection)
                 if (category == nil) {
@@ -40,7 +40,7 @@ struct GroupBrowserContainerView: View {
                         alert.alertStyle = NSAlert.Style.warning
                         
                         if (alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn) {
-                            userData.dict.removeValue(forKey: group)
+                            userData.groupData.removeValue(forKey: group)
                             userData.objectWillChange.send()
                         }
                     }) {
@@ -54,6 +54,6 @@ struct GroupBrowserContainerView: View {
 
 struct GroupBrowserContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        GroupBrowserContainerView(group:"").environmentObject(UserData())
+        GroupBrowserContainerView(group:"").environmentObject(SaveData())
     }
 }

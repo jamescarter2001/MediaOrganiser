@@ -1,5 +1,5 @@
 //
-//  TestView.swift
+//  BrowserView.swift
 //  MediaOrganiser
 //
 //  Created by James on 11/01/2021.
@@ -10,10 +10,10 @@ import SwiftUI
 struct BrowserView: View {
     
     let browserData : [BrowserFile]
-    let category : EFileGroup?
+    let category : EFileCategory?
     
     @State private var selectedFiles = Set<BrowserFile>()
-    @EnvironmentObject private var userData : UserData
+    @EnvironmentObject private var userData : SaveData
     
     var body: some View {
         VStack {
@@ -26,16 +26,16 @@ struct BrowserView: View {
                                     Section {
                                         Menu("Add to Category") {
                                             Section {
-                                                ForEach(EFileGroup.allCases, id: \.self) { i in
-                                                    if (i != EFileGroup.none) {
+                                                ForEach(EFileCategory.allCases, id: \.self) { i in
+                                                    if (i != EFileCategory.none) {
                                                     Button(action: {
                                                         selectedFiles.forEach { selection in
                                                             
-                                                            var existing : [BrowserFile] = userData.dict[i.rawValue] ?? []
+                                                            var existing : [BrowserFile] = userData.groupData[i.rawValue] ?? []
                                                             if (!existing.contains(selection)) {
                                                                 existing.append(selection)
                                                             }
-                                                            userData.dict[i.rawValue] = existing
+                                                            userData.groupData[i.rawValue] = existing
                                                         }
                                                         selectedFiles = Set<BrowserFile>()
                                                         userData.objectWillChange.send()
@@ -47,14 +47,14 @@ struct BrowserView: View {
                                             }
                                         }
                                         Menu("Remove from Category") {
-                                            let keys = EFileGroup.allCases
+                                            let keys = EFileCategory.allCases
                                             ForEach(keys, id: \.self) { i in
-                                                if (i != EFileGroup.none) {
+                                                if (i != EFileCategory.none) {
                                                 Button(action: {
                                                     selectedFiles.forEach { selection in
                                                         for key in keys {
-                                                            let groupData = userData.dict[key.rawValue]?.filter({$0.path != selection.path})
-                                                            userData.dict[key.rawValue] = groupData
+                                                            let groupData = userData.groupData[key.rawValue]?.filter({$0.path != selection.path})
+                                                            userData.groupData[key.rawValue] = groupData
                                                         }
                                                     }
                                                     selectedFiles = Set<BrowserFile>()
@@ -79,23 +79,23 @@ struct BrowserView: View {
                                             if (alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn) {
                                                 print("Done: \(textField.stringValue)")
                                                 let newGroup : [BrowserFile] = Array(selectedFiles)
-                                                userData.dict[textField.stringValue.lowercased()] = newGroup
+                                                userData.groupData[textField.stringValue.lowercased()] = newGroup
                                                 userData.objectWillChange.send()
                                             }
                                         }) {
                                             Text("New Playlist")
                                         }
                                         Section {
-                                            ForEach(Array(userData.dict.keys), id: \.self) { i in
-                                                if EFileGroup(rawValue: i) == nil {
+                                            ForEach(Array(userData.groupData.keys), id: \.self) { i in
+                                                if EFileCategory(rawValue: i) == nil {
                                                     Button(action: {
                                                         selectedFiles.forEach { selection in
                                                             
-                                                            var existing : [BrowserFile] = userData.dict[i] ?? []
+                                                            var existing : [BrowserFile] = userData.groupData[i] ?? []
                                                             if (!existing.contains(selection)) {
                                                                 existing.append(selection)
                                                             }
-                                                            userData.dict[i] = existing
+                                                            userData.groupData[i] = existing
                                                         }
                                                         selectedFiles = Set<BrowserFile>()
                                                         userData.objectWillChange.send()
@@ -107,15 +107,15 @@ struct BrowserView: View {
                                         }
                                     }
                                     Menu("Remove from Playlist") {
-                                        let keys = Array(userData.dict.keys)
+                                        let keys = Array(userData.groupData.keys)
                                         ForEach(keys, id: \.self) { i in
-                                            if EFileGroup(rawValue: i) == nil {
+                                            if EFileCategory(rawValue: i) == nil {
                                             Button(action: {
                                                 selectedFiles.forEach { selection in
                                                     
                                                     for key in keys {
-                                                        let groupData = userData.dict[key]?.filter({$0.path != selection.path})
-                                                        userData.dict[key] = groupData
+                                                        let groupData = userData.groupData[key]?.filter({$0.path != selection.path})
+                                                        userData.groupData[key] = groupData
                                                     }
                                                 }
                                                 selectedFiles = Set<BrowserFile>()
@@ -139,27 +139,23 @@ struct BrowserView: View {
                                             
                                             if (alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn) {
                                                 
-                                                let keys = Array(userData.dict.keys)
+                                                let keys = Array(userData.groupData.keys)
                                                 selectedFiles.forEach { i in
                                                     for key in keys {
                                                         
-                                                        let matchingFiles : [BrowserFile] = userData.dict[key]!.filter({$0.path == i.path})
+                                                        let matchingFiles : [BrowserFile] = userData.groupData[key]!.filter({$0.path == i.path})
                                                         
-                                                        userData.dict[key] = userData.dict[key]!.filter({$0.path != i.path})
+                                                        userData.groupData[key] = userData.groupData[key]!.filter({$0.path != i.path})
                                                         
                                                         matchingFiles.forEach { match in
                                                             var matchCopy = match
                                                             matchCopy.comment = textField.stringValue
-                                                            userData.dict[key]?.append(matchCopy)
+                                                            userData.groupData[key]?.append(matchCopy)
                                                         }
                                                     }
                                                 }
                                                 userData.objectWillChange.send()
                                             }
-                                            
-                                            //---
-                                            
-                                            
                                         }) {
                                             Text("Edit Comment")
                                         }

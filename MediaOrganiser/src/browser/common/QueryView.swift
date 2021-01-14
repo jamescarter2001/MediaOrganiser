@@ -14,6 +14,7 @@ struct QueryView : View {
     let pickerOptions = ["Alphabetically", "Size"]
     
     var body : some View {
+        Text("Sort:").foregroundColor(.gray)
         Picker(selection: $selection, label: Text("AAAA")) {
             ForEach(0 ..< pickerOptions.count) {
                 Text(pickerOptions[$0])
