@@ -100,6 +100,7 @@
 		1A13649225AF50AA00F926EE /* deprecated */ = {
 			isa = PBXGroup;
 			children = (
+				1A46C25525ACFD2F00514318 /* WelcomeView.swift */,
 				1AA9D39B25AA132D00F86F2C /* ContentView.swift */,
 			);
 			path = deprecated;
@@ -218,7 +219,6 @@
 				1AA9D3F225AB30C900F86F2C /* enum */,
 				1A39B8FD25AB3429001C7D23 /* browser */,
 				1AA9D39925AA132D00F86F2C /* MediaOrganiserApp.swift */,
-				1A46C25525ACFD2F00514318 /* WelcomeView.swift */,
 				1A8B02CA25AF4AA4005E5D6A /* MainView.swift */,
 			);
 			path = src;

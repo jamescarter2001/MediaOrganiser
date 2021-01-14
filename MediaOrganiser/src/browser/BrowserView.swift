@@ -17,7 +17,6 @@ struct BrowserView: View {
     var body: some View {
         
         if (browserData.count != 0) {
-            
             List(browserData, id: \.self, selection: $selectedFiles) { item in
                 BrowserItemView(name: item.name, path: item.path, size: item.size, type: item.type, group: item.group)
                     .contextMenu {
@@ -44,9 +43,11 @@ struct BrowserView: View {
                 }
             }.listStyle(SidebarListStyle())
         } else {
-            Image(systemName: "folder").resizable().scaledToFit().frame(width: 100, height: 100, alignment: .center).foregroundColor(.gray)
-            Text("No matching files found in the selected directory.")
+            VStack {
+                Image(systemName: "folder").resizable().scaledToFit().frame(width: 100, height: 100, alignment: .center).foregroundColor(.gray)
+                Text("No matching files found in the selected directory.")
                 .multilineTextAlignment(.center).foregroundColor(.gray)
+            }
         }
     }
 }

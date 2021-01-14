@@ -10,15 +10,16 @@ import SwiftUI
 struct MainView: View {
     
     @EnvironmentObject var userData : UserData
+    @State private var selection : Int? = 0
     
     var body: some View {
         NavigationView {
-            List {
+            List(selection: $selection) {
                 Section(header: Text("System")) {
                 NavigationLink(destination: SystemBrowserContainerView()) {
                     Image(systemName: "tray")
                         Text("System Browser")
-                }
+                }.tag(0)
                 }
                 Section(header: Text("Groups")) {
                 ForEach(EFileGroup.allCases, id: \.self) { group in

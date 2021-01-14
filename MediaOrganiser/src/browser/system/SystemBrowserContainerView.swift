@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SystemBrowserContainerView: View {
     
-    @State var currentDirectory : String = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path
+    @State private var currentDirectory : String = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path
+    @State private var search: String = ""
     
     @EnvironmentObject var userData : UserData
     
@@ -17,8 +18,14 @@ struct SystemBrowserContainerView: View {
     
     var body: some View {
         let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.data)
+        let filteredData = browserData.filter({$0.name.contains(search)})
         
-        BrowserView(browserData: browserData) .navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
+        HStack {
+            TextField("Search", text: $search).frame(width: 300, height:20).padding(EdgeInsets(top: 5, leading: 14, bottom: 5, trailing: 0))
+            Spacer()
+        }
+        
+        BrowserView(browserData: search.isEmpty ? browserData : filteredData ) .navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
             Button(action: {
                 let dialog = NSOpenPanel();
 
