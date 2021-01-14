@@ -7,25 +7,21 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct SystemBrowserContainerView: View {
     
-    @State var currentDirectory : String = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path
+    @State private var currentDirectory : String = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path
+    @State private var search: String = ""
     
     @EnvironmentObject var userData : UserData
     
-    let browserFileService : BrowserFileService = BrowserFileService()
+    let browserFileService : SystemBrowserFileService = SystemBrowserFileService()
     
     var body: some View {
         let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.data)
-        NavigationView {
-            List {
-                NavigationLink(destination: BrowserView(browserData: browserData)) {
-                    Image(systemName: "tray")
-                        Text("System Browser")
-                }
-                    }
-                    .listStyle(SidebarListStyle())
-        }.navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
+        let filteredData = browserData.filter({$0.name.contains(search) || $0.path.contains(search)})
+                
+        BrowserView(browserData: search.isEmpty ? browserData : filteredData ) .navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
+            TextField("Search", text: $search).frame(width: 300, height:30).padding(EdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 0)).textFieldStyle(RoundedBorderTextFieldStyle())
             Button(action: {
                 let dialog = NSOpenPanel();
 
@@ -44,7 +40,8 @@ struct ContentView: View {
             }
             #if DEBUG
             Button(action: {
-                
+                let encoder : JSONFileHandler = JSONFileHandler<BrowserFile>()
+                encoder.encodeAndSaveFile(array: userData.data, path: "")
             }) {
                 Image(systemName: "exclamationmark.square")
             }.foregroundColor(.orange)
@@ -53,8 +50,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct SystemBrowserContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SystemBrowserContainerView()
     }
 }

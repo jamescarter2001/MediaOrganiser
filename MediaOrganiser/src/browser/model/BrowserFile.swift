@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BrowserFile : Hashable, Equatable {
+struct BrowserFile : Hashable, Equatable, Codable {
     
     let name : String
     let path : String
@@ -28,5 +28,9 @@ struct BrowserFile : Hashable, Equatable {
         self.size = 0
         self.type = EFileType.unknown
         self.group = EFileGroup.none
+    }
+    
+    func copy() -> BrowserFile {
+        return BrowserFile(name: self.name, path: self.path, size: self.size, type: self.type, group: self.group)
     }
 }

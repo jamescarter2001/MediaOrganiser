@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum EFileGroup : String, CaseIterable {
+enum EFileGroup : String, CaseIterable, Codable {
     case red, blue, green, purple, none
 }

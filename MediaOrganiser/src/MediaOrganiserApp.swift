@@ -11,9 +11,8 @@ import SwiftUI
 struct MediaOrganiserApp: App {
     var body: some Scene {
         WindowGroup {
-            //WelcomeView(message: "AAAA")
-            //TextView()
-            ContentView().environmentObject(UserData())
+            //ContentView().environmentObject(UserData())
+            MainView().environmentObject(UserData())
         }
     }
 }

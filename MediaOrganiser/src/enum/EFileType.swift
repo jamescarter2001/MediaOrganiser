@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum EFileType : String, CaseIterable {
+enum EFileType : String, CaseIterable, Codable {
     case mp3, aac, wav, avi, m4a, flac, mp4, mkv, unknown
 }
