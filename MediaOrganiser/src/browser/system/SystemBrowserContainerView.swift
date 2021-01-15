@@ -43,42 +43,7 @@ struct SystemBrowserContainerView: View {
             }) {
                 Image(systemName: "folder")
             }.help(Text("Change directory"))
-            Button(action:{
-                let dialog = NSSavePanel();
-                
-                dialog.title                   = "Please select a directory:";
-                dialog.showsResizeIndicator    = true;
-                dialog.showsHiddenFiles        = false;
-                dialog.allowedFileTypes = ["wzstate"]
-                
-                
-                if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
-                    let savePath : String = dialog.url!.path
-                    JSONmediaFileHandler.EncodeAndSaveFile(dict: userData.groupData, path: savePath)
-                }
-            }) {
-                Image(systemName: "square.and.arrow.up")
-            }.help(Text("Save state"))
-            Button(action:{
-                
-                let dialog = NSOpenPanel();
-                
-                dialog.title                   = "Please select a directory:";
-                dialog.showsResizeIndicator    = true;
-                dialog.showsHiddenFiles        = false;
-                dialog.allowedFileTypes = ["wzstate"]
-                dialog.canChooseFiles = true;
-                dialog.canChooseDirectories = false;
-                
-                if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
-                    let savePath : String = dialog.url!.path
-                    let savedDict : [String:[MediaFile]] = JSONmediaFileHandler.DecodeFile(path: savePath)
-                    userData.groupData = savedDict
-                    userData.objectWillChange.send()
-                }
-            }) {
-                Image(systemName: "square.and.arrow.down")
-            }.help(Text("Load state"))
+            SaveLoadStateBar()
             #if DEBUG
             Button(action: {
                 userData.groupData = JSONmediaFileHandler.DecodeFile(path: "/Users/james/Desktop/output.wzstate")

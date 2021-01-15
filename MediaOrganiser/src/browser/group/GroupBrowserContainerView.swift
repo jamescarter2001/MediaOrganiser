@@ -42,6 +42,7 @@ struct GroupBrowserContainerView: View {
                             Image(systemName: "trash").foregroundColor(.red)
                         }.help(Text("Delete"))
                     }
+                    SaveLoadStateBar()
                 }
             }
         }
