@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let groupColorDict : [EFileCategory : Color] = [EFileCategory.red : Color.red, EFileCategory.blue : Color.blue, EFileCategory.green : Color.green, EFileCategory.purple : Color.purple, EFileCategory.none : Color.gray];
+private let groupColorDict : [EFileCategory : Color] = [EFileCategory.red : Color.red, EFileCategory.blue : Color.blue, EFileCategory.green : Color.green, EFileCategory.purple : Color.purple, EFileCategory.none : Color.gray];
 
 struct FileCategoryCircleView: View {
     

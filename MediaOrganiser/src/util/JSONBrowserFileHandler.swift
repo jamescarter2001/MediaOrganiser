@@ -9,7 +9,7 @@ import Foundation
 
 class JSONmediaFileHandler {
     
-    static let encoder = JSONEncoder()
+    static private let encoder = JSONEncoder()
     
     static func EncodeAndSaveFile(dict : [String:[MediaFile]], path : String) {
         

@@ -11,7 +11,8 @@ struct QueryBarView : View {
     
     @Binding var search : String
     @Binding var selection : Int
-    let pickerOptions = ["Alphabetically", "Size"]
+    
+    private let pickerOptions = ["Alphabetically", "Size"]
     
     var body : some View {
         Text("Sort:").foregroundColor(.gray)

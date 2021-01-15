@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @EnvironmentObject var userData : SaveData
+    @EnvironmentObject private var userData : SaveData
     @State private var selection : Int? = 0
     
     var body: some View {
