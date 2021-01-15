@@ -2,34 +2,42 @@
 //  FileProvider.swift
 //  MediaOrganiser
 //
-//  Created by James on 10/01/2021.
+//  Created by James on 11/01/2021.
 //
 
 import Foundation
 
-class SystemBrowserFileService {
+class SystemmediaFileService {
     
-    func getForPath(path : String, groupMembers : [BrowserFile]) -> [BrowserFile] {
+    func getForPath(path : String, groupData : [String:[MediaFile]]) -> [MediaFile] {
         
         // Prevent crashes with spaced folder names.
         let encodedPath = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let pathUrl = URL(string: encodedPath!)!
-        var files : [BrowserFile] = []
+        
+        var files : [MediaFile] = []
         
         do {
             let pathContents = try FileManager.default.contentsOfDirectory(at: pathUrl, includingPropertiesForKeys: nil)
-            for item in pathContents {
-                let attr = try FileManager.default.attributesOfItem(atPath: item.path)
-                let fileType = EFileType(rawValue: item.pathExtension) ?? EFileType.unknown
+            for file in pathContents {
+                let attr = try FileManager.default.attributesOfItem(atPath: file.path)
+                let fileType = EFileType(rawValue: file.pathExtension) ?? EFileType.unknown
                 
-                //,
-                
+                // Filter out irrelevant files.
                 if (fileType != EFileType.unknown) {
-                    var file : BrowserFile = BrowserFile(name: item.lastPathComponent, path: item.path, size: attr[FileAttributeKey.size] as! UInt64, type: fileType, group: EFileGroup.none)
+                    var file : MediaFile = MediaFile(name: file.lastPathComponent, path: file.path, type: fileType, size: attr[FileAttributeKey.size] as! UInt64, imagePath: "", comment:"")
                     
-                    groupMembers.forEach { member in
-                        if (member.path == file.path) {
-                            file.group = member.group
+                    let groups = Array(groupData.keys)
+                    
+                    for group in groups {
+                        let members = groupData[group]
+                        
+                        // Fetch file comments from cache.
+                        members!.forEach { i in
+                            if (i.path == file.path) {
+                                file.comment = i.comment
+                                file.imagePath = i.imagePath
+                            }
                         }
                     }
                 files.append(file)
@@ -38,9 +46,8 @@ class SystemBrowserFileService {
             return files
             
         } catch {
-            print("error")
+            print("System Directory Read Error (\(path): \(error)")
         }
-        
-        return [BrowserFile()]
+        return []
     }
 }

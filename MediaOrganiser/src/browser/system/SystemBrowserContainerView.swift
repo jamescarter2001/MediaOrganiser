@@ -12,39 +12,45 @@ struct SystemBrowserContainerView: View {
     @State private var currentDirectory : String = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].path
     @State private var search: String = ""
     
-    @EnvironmentObject var userData : UserData
+    @State private var selection : Int = 0
     
-    let browserFileService : SystemBrowserFileService = SystemBrowserFileService()
+    @EnvironmentObject private var userData : SaveData
+    
+    let systemmediaFileService : SystemmediaFileService = SystemmediaFileService()
     
     var body: some View {
-        let browserData = browserFileService.getForPath(path: currentDirectory, groupMembers: userData.data)
-        let filteredData = browserData.filter({$0.name.contains(search) || $0.path.contains(search)})
-                
-        BrowserView(browserData: search.isEmpty ? browserData : filteredData ) .navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
-            TextField("Search", text: $search).frame(width: 300, height:30).padding(EdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 0)).textFieldStyle(RoundedBorderTextFieldStyle())
+        let browserData = systemmediaFileService.getForPath(path: currentDirectory, groupData: userData.groupData)
+        let queriedData = browserData.filter({search.isEmpty || $0.name.contains(search) || $0.path.contains(search)})
+        
+        BrowserView(browserData: selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size}), category: nil).navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
+            
+            QueryBarView(search: $search, selection: $selection)
+            
             Button(action: {
                 let dialog = NSOpenPanel();
-
-                                    dialog.title                   = "Please select a directory:";
-                                    dialog.showsResizeIndicator    = true;
-                                    dialog.showsHiddenFiles        = false;
-                                    dialog.allowsMultipleSelection = false;
-                                    dialog.canChooseFiles = false;
-                                    dialog.canChooseDirectories = true;
-                                    
-                                    if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
-                                        self.currentDirectory = dialog.url!.path
-                                    }
+                
+                dialog.title                   = "Please select a directory:";
+                dialog.showsResizeIndicator    = true;
+                dialog.showsHiddenFiles        = false;
+                dialog.allowsMultipleSelection = false;
+                dialog.canChooseFiles = false;
+                dialog.canChooseDirectories = true;
+                
+                if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
+                    print(dialog.url!.path)
+                    self.currentDirectory = dialog.url!.path
+                }
             }) {
                 Image(systemName: "folder")
-            }
+            }.help(Text("Change directory"))
+            SaveLoadStateBar()
             #if DEBUG
             Button(action: {
-                let encoder : JSONFileHandler = JSONFileHandler<BrowserFile>()
-                encoder.encodeAndSaveFile(array: userData.data, path: "")
+                userData.groupData = JSONmediaFileHandler.DecodeFile(path: "/Users/james/Desktop/output.wzstate")
+                userData.objectWillChange.send()
             }) {
                 Image(systemName: "exclamationmark.square")
-            }.foregroundColor(.orange)
+            }.foregroundColor(.orange).help(Text("Debug"))
             #endif
         }
     }
@@ -52,6 +58,6 @@ struct SystemBrowserContainerView: View {
 
 struct SystemBrowserContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        SystemBrowserContainerView()
+        SystemBrowserContainerView().environmentObject(SaveData())
     }
 }

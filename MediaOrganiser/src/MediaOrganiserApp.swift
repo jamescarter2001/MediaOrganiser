@@ -11,8 +11,7 @@ import SwiftUI
 struct MediaOrganiserApp: App {
     var body: some Scene {
         WindowGroup {
-            //ContentView().environmentObject(UserData())
-            MainView().environmentObject(UserData())
+            MainView().environmentObject(SaveData())
         }
     }
 }
