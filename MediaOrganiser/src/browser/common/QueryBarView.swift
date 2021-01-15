@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct QueryView : View {
+struct QueryBarView : View {
     
     @Binding var search : String
     @Binding var selection : Int
@@ -23,9 +23,3 @@ struct QueryView : View {
         TextField("Search", text: $search).frame(width: 300, height:30).padding(EdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 0)).textFieldStyle(RoundedBorderTextFieldStyle()).help(Text("Search for files in directory"))
     }
 }
-
-/*struct QueryView_Previews: PreviewProvider {
-    static var previews: some View {
-        QueryView()
-    }
-}*/

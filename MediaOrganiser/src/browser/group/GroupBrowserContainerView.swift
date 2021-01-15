@@ -23,7 +23,7 @@ struct GroupBrowserContainerView: View {
             
             let category = EFileCategory(rawValue: group)
             BrowserView(browserData: (selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size})) , category: category != nil ? category : nil).toolbar {
-                QueryView(search: $search, selection: $selection)
+                QueryBarView(search: $search, selection: $selection)
                 if (category == nil) {
                     /*Picker(selection: $selection, label: Text("AAAA")) {
                         ForEach(0 ..< pickerOptions.count) {

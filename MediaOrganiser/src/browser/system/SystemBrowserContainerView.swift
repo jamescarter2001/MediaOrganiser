@@ -25,7 +25,7 @@ struct SystemBrowserContainerView: View {
 
         BrowserView(browserData: selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size}), category: nil).navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
 
-            QueryView(search: $search, selection: $selection)
+            QueryBarView(search: $search, selection: $selection)
             
             Button(action: {
                 let dialog = NSOpenPanel();
