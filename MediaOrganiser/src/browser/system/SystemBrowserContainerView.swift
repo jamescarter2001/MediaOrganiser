@@ -17,10 +17,10 @@ struct SystemBrowserContainerView: View {
     
     @EnvironmentObject private var userData : SaveData
     
-    let systemBrowserFileService : SystemBrowserFileService = SystemBrowserFileService()
+    let systemmediaFileService : SystemmediaFileService = SystemmediaFileService()
     
     var body: some View {
-        let browserData = systemBrowserFileService.getForPath(path: currentDirectory, groupData: userData.groupData)
+        let browserData = systemmediaFileService.getForPath(path: currentDirectory, groupData: userData.groupData)
         let queriedData = browserData.filter({search.isEmpty || $0.name.contains(search) || $0.path.contains(search)})
 
         BrowserView(browserData: selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size}), category: nil).navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
@@ -55,7 +55,7 @@ struct SystemBrowserContainerView: View {
                 
                 if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
                     let savePath : String = dialog.url!.path
-                    JSONBrowserFileHandler.EncodeAndSaveFile(dict: userData.groupData, path: savePath)
+                    JSONmediaFileHandler.EncodeAndSaveFile(dict: userData.groupData, path: savePath)
                 }
             }) {
                 Image(systemName: "square.and.arrow.up")
@@ -73,7 +73,7 @@ struct SystemBrowserContainerView: View {
                 
                 if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
                     let savePath : String = dialog.url!.path
-                    let savedDict : [String:[BrowserFile]] = JSONBrowserFileHandler.DecodeFile(path: savePath)
+                    let savedDict : [String:[MediaFile]] = JSONmediaFileHandler.DecodeFile(path: savePath)
                     userData.groupData = savedDict
                     userData.objectWillChange.send()
                 }
@@ -82,7 +82,7 @@ struct SystemBrowserContainerView: View {
             }.help(Text("Load state"))
             #if DEBUG
             Button(action: {
-                userData.groupData = JSONBrowserFileHandler.DecodeFile(path: "/Users/james/Desktop/output.wzstate")
+                userData.groupData = JSONmediaFileHandler.DecodeFile(path: "/Users/james/Desktop/output.wzstate")
                 userData.objectWillChange.send()
             }) {
                 Image(systemName: "exclamationmark.square")

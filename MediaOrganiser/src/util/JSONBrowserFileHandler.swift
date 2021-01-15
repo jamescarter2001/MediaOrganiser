@@ -7,11 +7,11 @@
 
 import Foundation
 
-class JSONBrowserFileHandler {
+class JSONmediaFileHandler {
     
     static let encoder = JSONEncoder()
     
-    static func EncodeAndSaveFile(dict : [String:[BrowserFile]], path : String) {
+    static func EncodeAndSaveFile(dict : [String:[MediaFile]], path : String) {
         
         var encodedString : String = ""
         
@@ -33,9 +33,9 @@ class JSONBrowserFileHandler {
         }
     }
     
-    static func DecodeFile(path : String) -> [String:[BrowserFile]] {
+    static func DecodeFile(path : String) -> [String:[MediaFile]] {
         
-        var finalDict : [String : [BrowserFile]] = [:]
+        var finalDict : [String : [MediaFile]] = [:]
 
         var fileUrl = URLComponents()
         fileUrl.scheme = "file"
@@ -49,12 +49,12 @@ class JSONBrowserFileHandler {
                     for group in Array(json.keys) {
                         
                         let jsonFileGroup = json[group] as! [[String:Any]]
-                        var files : [BrowserFile] = []
+                        var files : [MediaFile] = []
                         
                         for file in jsonFileGroup {
-                            let browserFile : BrowserFile = BrowserFile(name: file["name"] as! String, path: file["path"] as! String, type: EFileType(rawValue: file["type"] as! String) ?? EFileType.unknown, size: file["size"] as! UInt64,imagePath: file["imagePath"] as! String, comment: file["comment"] as! String)
+                            let mediaFile : MediaFile = MediaFile(name: file["name"] as! String, path: file["path"] as! String, type: EFileType(rawValue: file["type"] as! String) ?? EFileType.unknown, size: file["size"] as! UInt64,imagePath: file["imagePath"] as! String, comment: file["comment"] as! String)
                             
-                            files.append(browserFile)
+                            files.append(mediaFile)
                         }
                         finalDict[group] = files
                     }

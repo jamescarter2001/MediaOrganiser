@@ -7,15 +7,15 @@
 
 import Foundation
 
-class SystemBrowserFileService {
+class SystemmediaFileService {
     
-    func getForPath(path : String, groupData : [String:[BrowserFile]]) -> [BrowserFile] {
+    func getForPath(path : String, groupData : [String:[MediaFile]]) -> [MediaFile] {
         
         // Prevent crashes with spaced folder names.
         let encodedPath = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let pathUrl = URL(string: encodedPath!)!
         
-        var files : [BrowserFile] = []
+        var files : [MediaFile] = []
         
         do {
             let pathContents = try FileManager.default.contentsOfDirectory(at: pathUrl, includingPropertiesForKeys: nil)
@@ -25,7 +25,7 @@ class SystemBrowserFileService {
                 
                 // Filter out irrelevant files.
                 if (fileType != EFileType.unknown) {
-                    var file : BrowserFile = BrowserFile(name: file.lastPathComponent, path: file.path, type: fileType, size: attr[FileAttributeKey.size] as! UInt64, imagePath: "", comment:"")
+                    var file : MediaFile = MediaFile(name: file.lastPathComponent, path: file.path, type: fileType, size: attr[FileAttributeKey.size] as! UInt64, imagePath: "", comment:"")
                     
                     let groups = Array(groupData.keys)
                     

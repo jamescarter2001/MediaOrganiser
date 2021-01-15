@@ -9,10 +9,10 @@ import SwiftUI
 
 struct BrowserView: View {
     
-    let browserData : [BrowserFile]
+    let browserData : [MediaFile]
     let category : EFileCategory?
     
-    @State private var selectedFiles = Set<BrowserFile>()
+    @State private var selectedFiles = Set<MediaFile>()
     @EnvironmentObject private var userData : SaveData
     
     var body: some View {
@@ -31,13 +31,13 @@ struct BrowserView: View {
                                                     Button(action: {
                                                         selectedFiles.forEach { selection in
                                                             
-                                                            var existing : [BrowserFile] = userData.groupData[i.rawValue] ?? []
+                                                            var existing : [MediaFile] = userData.groupData[i.rawValue] ?? []
                                                             if (!existing.contains(selection)) {
                                                                 existing.append(selection)
                                                             }
                                                             userData.groupData[i.rawValue] = existing
                                                         }
-                                                        selectedFiles = Set<BrowserFile>()
+                                                        selectedFiles = Set<MediaFile>()
                                                         userData.objectWillChange.send()
                                                     }) {
                                                         Text(i.rawValue.capitalized)
@@ -57,7 +57,7 @@ struct BrowserView: View {
                                                             userData.groupData[key.rawValue] = groupData
                                                         }
                                                     }
-                                                    selectedFiles = Set<BrowserFile>()
+                                                    selectedFiles = Set<MediaFile>()
                                                     userData.objectWillChange.send()
                                                 }) {
                                                     Text(i.rawValue.capitalized)
@@ -78,7 +78,7 @@ struct BrowserView: View {
                                             
                                             if (alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn) {
                                                 print("Done: \(textField.stringValue)")
-                                                let newGroup : [BrowserFile] = Array(selectedFiles)
+                                                let newGroup : [MediaFile] = Array(selectedFiles)
                                                 userData.groupData[textField.stringValue.lowercased()] = newGroup
                                                 userData.objectWillChange.send()
                                             }
@@ -91,13 +91,13 @@ struct BrowserView: View {
                                                     Button(action: {
                                                         selectedFiles.forEach { selection in
                                                             
-                                                            var existing : [BrowserFile] = userData.groupData[i] ?? []
+                                                            var existing : [MediaFile] = userData.groupData[i] ?? []
                                                             if (!existing.contains(selection)) {
                                                                 existing.append(selection)
                                                             }
                                                             userData.groupData[i] = existing
                                                         }
-                                                        selectedFiles = Set<BrowserFile>()
+                                                        selectedFiles = Set<MediaFile>()
                                                         userData.objectWillChange.send()
                                                     }) {
                                                         Text(i.capitalized)
@@ -118,7 +118,7 @@ struct BrowserView: View {
                                                         userData.groupData[key] = groupData
                                                     }
                                                 }
-                                                selectedFiles = Set<BrowserFile>()
+                                                selectedFiles = Set<MediaFile>()
                                                 userData.objectWillChange.send()
                                             }) {
                                                 Text(i.capitalized)
@@ -143,7 +143,7 @@ struct BrowserView: View {
                                                 selectedFiles.forEach { i in
                                                     for key in keys {
                                                         
-                                                        let matchingFiles : [BrowserFile] = userData.groupData[key]!.filter({$0.path == i.path})
+                                                        let matchingFiles : [MediaFile] = userData.groupData[key]!.filter({$0.path == i.path})
                                                         
                                                         userData.groupData[key] = userData.groupData[key]!.filter({$0.path != i.path})
                                                         
@@ -179,7 +179,7 @@ struct BrowserView: View {
                                                 selectedFiles.forEach { i in
                                                     for key in keys {
                                                         
-                                                        let matchingFiles : [BrowserFile] = userData.groupData[key]!.filter({$0.path == i.path})
+                                                        let matchingFiles : [MediaFile] = userData.groupData[key]!.filter({$0.path == i.path})
                                                         
                                                         userData.groupData[key] = userData.groupData[key]!.filter({$0.path != i.path})
                                                         
