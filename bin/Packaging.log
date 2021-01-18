@@ -1,0 +1,85 @@
+2021-01-15 16:31:20 +0000  Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x7f88c164e700; archive(resolved)='<IDEArchive: 0x7f88bd0f18d0>', distributionTask(resolved)='2', distributionDestination(resolved)='1', distributionMethod(resolved)='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team(resolved)='<IDEProvisioningDisambiguatableBasicTeam: 0x7f88c2a569d0; teamID='Y25855H2YJ', teamName='James Carter', teamType='Individual', username='jcman6080@gmail.com', isFreeProvisioningTeam='0'>'>
+	Chain (11, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x7f88c164e700; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7f88c2a569d0; teamID='Y25855H2YJ', teamName='James Carter', teamType='Individual', username='jcman6080@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionProcessingPipelineContext: 0x7f88a9f72a70; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7f88c2a569d0; teamID='Y25855H2YJ', teamName='James Carter', teamType='Individual', username='jcman6080@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7f88c10c96f0; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7f88c2a569d0; teamID='Y25855H2YJ', teamName='James Carter', teamType='Individual', username='jcman6080@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7f88acd07bb0; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7f88c2a569d0; teamID='Y25855H2YJ', teamName='James Carter', teamType='Individual', username='jcman6080@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7f88c262f2f0; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7f88c2a569d0; teamID='Y25855H2YJ', teamName='James Carter', teamType='Individual', username='jcman6080@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7f88acd6f330; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7f88c2a569d0; teamID='Y25855H2YJ', teamName='James Carter', teamType='Individual', username='jcman6080@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7f88c20138c0; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7f88c2a569d0; teamID='Y25855H2YJ', teamName='James Carter', teamType='Individual', username='jcman6080@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7f88a85a90b0; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7f88c2a569d0; teamID='Y25855H2YJ', teamName='James Carter', teamType='Individual', username='jcman6080@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7f88c29c71f0; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team='(null)'>
+	<IDEDistributionContext: 0x7f88bfac42c0; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7f88bd4dc1b0>', team='(null)'>
+	<IDEDistributionContext: 0x7f88c145ac40; archive = '<IDEArchive: 0x7f88bd0f18d0>', distributionMethod='(null)', team='(null)'>
+</IDEDistributionProcessingPipelineContext: 0x7f88c164e700>
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionCreateDestRootStep
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionCopyItemStep
+2021-01-15 16:31:20 +0000  Running /usr/bin/ditto '-V' '/Users/james/Library/Developer/Xcode/Archives/2021-01-15/MediaOrganiser 15-01-2021, 16.31.xcarchive/Products/Applications/MediaOrganiser.app' '/var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/Root/Applications/MediaOrganiser.app'
+2021-01-15 16:31:20 +0000  >>> Copying /Users/james/Library/Developer/Xcode/Archives/2021-01-15/MediaOrganiser 15-01-2021, 16.31.xcarchive/Products/Applications/MediaOrganiser.app 
+2021-01-15 16:31:20 +0000  copying file ./Contents/_CodeSignature/CodeResources ... 
+2021-01-15 16:31:20 +0000  2200 bytes for ./Contents/_CodeSignature/CodeResources
+2021-01-15 16:31:20 +0000  copying file ./Contents/MacOS/MediaOrganiser ... 
+2021-01-15 16:31:20 +0000  525328 bytes for ./Contents/MacOS/MediaOrganiser
+2021-01-15 16:31:20 +0000  copying file ./Contents/Info.plist ... 
+2021-01-15 16:31:20 +0000  1292 bytes for ./Contents/Info.plist
+copying file ./Contents/PkgInfo ... 
+2021-01-15 16:31:20 +0000  8 bytes for ./Contents/PkgInfo
+2021-01-15 16:31:20 +0000  /usr/bin/ditto exited with 0
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionEmbedProfileStep
+2021-01-15 16:31:20 +0000  Skipping profile for item: <IDEDistributionItem: 0x7f88c2472a80; bundleID='com.james.MediaOrganiser', path='<DVTFilePath:0x7f88bcee7090:'/Users/james/Library/Developer/Xcode/Archives/2021-01-15/MediaOrganiser 15-01-2021, 16.31.xcarchive/Products/Applications/MediaOrganiser.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7f88abc5fb10; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7f88c16bf480; name='Apple Development: James Carter (6YY6ZPBZTV)', hash='50B57FC8A3C01D4BA9AA3574C8CC8114CAA1C1BF', serialNumber='<DVTSigningCertificateSerialNumber: 0x7f88c238fa40>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-01-09 16:42:54 +0000''>', entitlements='{
+}', teamID='Y25855H2YJ', identifier='com.james.MediaOrganiser', executablePath='<DVTFilePath:0x7f88bedcb2f0:'/Users/james/Library/Developer/Xcode/Archives/2021-01-15/MediaOrganiser 15-01-2021, 16.31.xcarchive/Products/Applications/MediaOrganiser.app/Contents/MacOS/MediaOrganiser'>', hardenedRuntime='1'>'>
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionInfoPlistStep
+2021-01-15 16:31:20 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionAppThinningPlistStep
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionCompileBitcodeStep
+2021-01-15 16:31:20 +0000  Skipping step: IDEDistributionCompileBitcodeStep because it said so
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionCodeSlimmingStep
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionCopyBCSymbolMapsStep
+2021-01-15 16:31:20 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionSymbolsStep
+2021-01-15 16:31:20 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionAppThinningStep
+2021-01-15 16:31:20 +0000  Skipping step: IDEDistributionAppThinningStep because it said so
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionArchThinningStep
+2021-01-15 16:31:20 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/Root/Applications/MediaOrganiser.app/Contents/MacOS/MediaOrganiser' '-verify_arch' 'arm64e'
+2021-01-15 16:31:20 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2021-01-15 16:31:20 +0000  Skipping architecture thinning for item "MediaOrganiser" because arch "arm64e" wasn't found
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionODRStep
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionStripXattrsStep
+2021-01-15 16:31:20 +0000  Running /usr/bin/xattr '-crs' '/var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/Root/Applications/MediaOrganiser.app'
+2021-01-15 16:31:20 +0000  /usr/bin/xattr exited with 0
+2021-01-15 16:31:20 +0000  Processing step: IDEDistributionCodesignStep
+2021-01-15 16:31:20 +0000  Entitlements for <IDEDistributionItem: 0x7f88c2472a80; bundleID='com.james.MediaOrganiser', path='<DVTFilePath:0x7f88bcee7090:'/Users/james/Library/Developer/Xcode/Archives/2021-01-15/MediaOrganiser 15-01-2021, 16.31.xcarchive/Products/Applications/MediaOrganiser.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7f88abc5fb10; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7f88c16bf480; name='Apple Development: James Carter (6YY6ZPBZTV)', hash='50B57FC8A3C01D4BA9AA3574C8CC8114CAA1C1BF', serialNumber='<DVTSigningCertificateSerialNumber: 0x7f88c24f98f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-01-09 16:42:54 +0000''>', entitlements='{
+}', teamID='Y25855H2YJ', identifier='com.james.MediaOrganiser', executablePath='<DVTFilePath:0x7f88bedcb2f0:'/Users/james/Library/Developer/Xcode/Archives/2021-01-15/MediaOrganiser 15-01-2021, 16.31.xcarchive/Products/Applications/MediaOrganiser.app/Contents/MacOS/MediaOrganiser'>', hardenedRuntime='1'>'>: {
+}
+2021-01-15 16:31:20 +0000  Entitlements for <IDEDistributionItem: 0x7f88c2472a80; bundleID='com.james.MediaOrganiser', path='<DVTFilePath:0x7f88bcee7090:'/Users/james/Library/Developer/Xcode/Archives/2021-01-15/MediaOrganiser 15-01-2021, 16.31.xcarchive/Products/Applications/MediaOrganiser.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7f88abc5fb10; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7f88c16bd9e0; name='Apple Development: James Carter (6YY6ZPBZTV)', hash='50B57FC8A3C01D4BA9AA3574C8CC8114CAA1C1BF', serialNumber='<DVTSigningCertificateSerialNumber: 0x7f88c240f3d0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-01-09 16:42:54 +0000''>', entitlements='{
+}', teamID='Y25855H2YJ', identifier='com.james.MediaOrganiser', executablePath='<DVTFilePath:0x7f88bedcb2f0:'/Users/james/Library/Developer/Xcode/Archives/2021-01-15/MediaOrganiser 15-01-2021, 16.31.xcarchive/Products/Applications/MediaOrganiser.app/Contents/MacOS/MediaOrganiser'>', hardenedRuntime='1'>'> are: {
+}
+2021-01-15 16:31:20 +0000  Writing entitlements for <IDEDistributionItem: 0x7f88c2472a80; bundleID='com.james.MediaOrganiser', path='<DVTFilePath:0x7f88bcee7090:'/Users/james/Library/Developer/Xcode/Archives/2021-01-15/MediaOrganiser 15-01-2021, 16.31.xcarchive/Products/Applications/MediaOrganiser.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7f88abc5fb10; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7f88c13cc4f0; name='Apple Development: James Carter (6YY6ZPBZTV)', hash='50B57FC8A3C01D4BA9AA3574C8CC8114CAA1C1BF', serialNumber='<DVTSigningCertificateSerialNumber: 0x7f88c2462860>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2021-01-09 16:42:54 +0000''>', entitlements='{
+}', teamID='Y25855H2YJ', identifier='com.james.MediaOrganiser', executablePath='<DVTFilePath:0x7f88bedcb2f0:'/Users/james/Library/Developer/Xcode/Archives/2021-01-15/MediaOrganiser 15-01-2021, 16.31.xcarchive/Products/Applications/MediaOrganiser.app/Contents/MacOS/MediaOrganiser'>', hardenedRuntime='1'>'> to: /var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/entitlements~~~XtYGTM
+2021-01-15 16:31:20 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '50B57FC8A3C01D4BA9AA3574C8CC8114CAA1C1BF' '--entitlements' '/var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/entitlements~~~XtYGTM' '--preserve-metadata=identifier,flags,runtime' '/var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/Root/Applications/MediaOrganiser.app'
+2021-01-15 16:31:20 +0000  /var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/Root/Applications/MediaOrganiser.app: replacing existing signature
+2021-01-15 16:31:21 +0000  /var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/Root/Applications/MediaOrganiser.app: signed app bundle with Mach-O universal (x86_64 arm64) [com.james.MediaOrganiser]
+2021-01-15 16:31:21 +0000  /usr/bin/codesign exited with 0
+2021-01-15 16:31:21 +0000  Processing step: IDEDistributionZipODRItemStep
+2021-01-15 16:31:21 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2021-01-15 16:31:21 +0000  Processing step: IDEDistributionSkipPackagingStep
+2021-01-15 16:31:21 +0000  Processing step: IDEDistributionAppStoreInformationStep
+2021-01-15 16:31:21 +0000  Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2021-01-15 16:31:21 +0000  Processing step: IDEDistributionGenerateProcessedDistributionItems
+2021-01-15 16:31:21 +0000  IDEDistributionItem init <DVTFilePath:0x7f88c231a5e0:'/var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/Root/Applications/MediaOrganiser.app'>
+2021-01-15 16:31:21 +0000  [OPTIONAL] Didn't find embedded provisioning profile for <DVTFilePath:0x7f88c231a5e0:'/var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/Root/Applications/MediaOrganiser.app'>: Error Domain=NSCocoaErrorDomain Code=4 "No file at <DVTFilePath:0x7f88a8229fe0:'/var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/Root/Applications/MediaOrganiser.app/Contents/embedded.provisionprofile'>" UserInfo={NSLocalizedDescription=No file at <DVTFilePath:0x7f88a8229fe0:'/var/folders/c7/62v4bhyd7ys958kmhv217rl40000gn/T/XcodeDistPipeline.~~~g9aaSq/Root/Applications/MediaOrganiser.app/Contents/embedded.provisionprofile'>}
+2021-01-15 16:31:21 +0000  Processing step: IDEDistributionCreateManifestStep
+2021-01-15 16:31:21 +0000  Skipping step: IDEDistributionCreateManifestStep because it said so

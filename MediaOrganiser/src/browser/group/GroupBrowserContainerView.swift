@@ -23,9 +23,8 @@ struct GroupBrowserContainerView: View {
                 let queriedData = browserData!.filter({search.isEmpty || $0.name.contains(search) || $0.path.contains(search)})
                 
                 let category = EFileCategory(rawValue: group)
-                BrowserView(browserData: (selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size})) , category: category != nil ? category : nil).navigationTitle("Media Organiser").toolbar {
+                BrowserView(browserData: (selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size})) , category: category != nil ? category : nil, allowTagging: true).navigationTitle("Media Organiser").toolbar {
                     QueryBarView(search: $search, selection: $selection)
-                    if (category == nil) {
                         Button(action:{
                             let alert = NSAlert()
                             alert.messageText = "\(group.capitalized)"
@@ -41,7 +40,7 @@ struct GroupBrowserContainerView: View {
                         }) {
                             Image(systemName: "trash").foregroundColor(.red)
                         }.help(Text("Delete"))
-                    }
+                    
                     SaveLoadStateBar()
                 }
             }

@@ -12,6 +12,8 @@ struct BrowserView: View {
     let browserData : [MediaFile]
     let category : EFileCategory?
     
+    let allowTagging : Bool
+    
     @State private var selectedFiles = Set<MediaFile>()
     @EnvironmentObject private var userData : SaveData
     
@@ -126,6 +128,7 @@ struct BrowserView: View {
                                             }
                                         }
                                     }
+                                    if (allowTagging) {
                                     Section {
                                         Button(action: {
                                             
@@ -196,6 +199,7 @@ struct BrowserView: View {
                                             Text("Edit Image")
                                         }
                                     }
+                                    }
                                 }
                             }
                     }.listStyle(SidebarListStyle())
@@ -213,6 +217,6 @@ struct BrowserView: View {
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        BrowserView(browserData: [], category: nil)
+        BrowserView(browserData: [], category: nil, allowTagging: false)
     }
 }

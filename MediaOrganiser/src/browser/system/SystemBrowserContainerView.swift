@@ -16,13 +16,13 @@ struct SystemBrowserContainerView: View {
     
     @EnvironmentObject private var userData : SaveData
     
-    let systemmediaFileService : SystemmediaFileService = SystemmediaFileService()
+    let systemMediaFileService : SystemMediaFileService = SystemMediaFileService()
     
     var body: some View {
-        let browserData = systemmediaFileService.getForPath(path: currentDirectory, groupData: userData.groupData)
+        let browserData = systemMediaFileService.getForPath(path: currentDirectory, groupData: userData.groupData)
         let queriedData = browserData.filter({search.isEmpty || $0.name.contains(search) || $0.path.contains(search)})
         
-        BrowserView(browserData: selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size}), category: nil).navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
+        BrowserView(browserData: selection == 0 ? queriedData.sorted(by: {$0.name < $1.name}) : queriedData.sorted(by: {$0.size > $1.size}), category: nil, allowTagging: false).navigationTitle(Text("Media Organiser")).navigationSubtitle(currentDirectory).toolbar {
             
             QueryBarView(search: $search, selection: $selection)
             

@@ -12,7 +12,7 @@
 		1A3A001025B0B5530069225E /* GroupBrowserContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A000F25B0B5530069225E /* GroupBrowserContainerView.swift */; };
 		1A3A001625B0D1CF0069225E /* QueryBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A001525B0D1CF0069225E /* QueryBarView.swift */; };
 		1A67F61C25AB3CDA00706E98 /* MediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67F61B25AB3CDA00706E98 /* MediaFile.swift */; };
-		1A67F62125AB400E00706E98 /* SystemBrowserFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67F62025AB400E00706E98 /* SystemBrowserFileService.swift */; };
+		1A67F62125AB400E00706E98 /* SystemMediaFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67F62025AB400E00706E98 /* SystemMediaFileService.swift */; };
 		1A83EE2B25B1EBDF00C84FE6 /* SaveLoadStateBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A83EE2A25B1EBDF00C84FE6 /* SaveLoadStateBar.swift */; };
 		1A8B02CB25AF4AA4005E5D6A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B02CA25AF4AA4005E5D6A /* MainView.swift */; };
 		1A8B02D025AF4B6B005E5D6A /* SystemBrowserContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B02CF25AF4B6B005E5D6A /* SystemBrowserContainerView.swift */; };
@@ -51,7 +51,7 @@
 		1A3A000F25B0B5530069225E /* GroupBrowserContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBrowserContainerView.swift; sourceTree = "<group>"; };
 		1A3A001525B0D1CF0069225E /* QueryBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryBarView.swift; sourceTree = "<group>"; };
 		1A67F61B25AB3CDA00706E98 /* MediaFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFile.swift; sourceTree = "<group>"; };
-		1A67F62025AB400E00706E98 /* SystemBrowserFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemBrowserFileService.swift; sourceTree = "<group>"; };
+		1A67F62025AB400E00706E98 /* SystemMediaFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMediaFileService.swift; sourceTree = "<group>"; };
 		1A83EE2A25B1EBDF00C84FE6 /* SaveLoadStateBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLoadStateBar.swift; sourceTree = "<group>"; };
 		1A8B02CA25AF4AA4005E5D6A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1A8B02CF25AF4B6B005E5D6A /* SystemBrowserContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemBrowserContainerView.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				1A8B02CF25AF4B6B005E5D6A /* SystemBrowserContainerView.swift */,
-				1A67F62025AB400E00706E98 /* SystemBrowserFileService.swift */,
+				1A67F62025AB400E00706E98 /* SystemMediaFileService.swift */,
 			);
 			path = system;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 				1AA9D3D825AB2D8300F86F2C /* FileCategoryCircleView.swift in Sources */,
 				1AA9D3DD25AB2DBE00F86F2C /* EFileType.swift in Sources */,
 				1AA9D3CE25AA8B8600F86F2C /* BrowserView.swift in Sources */,
-				1A67F62125AB400E00706E98 /* SystemBrowserFileService.swift in Sources */,
+				1A67F62125AB400E00706E98 /* SystemMediaFileService.swift in Sources */,
 				1A2B809D25AE2890000073E4 /* SaveData.swift in Sources */,
 				1A3A001025B0B5530069225E /* GroupBrowserContainerView.swift in Sources */,
 				1A67F61C25AB3CDA00706E98 /* MediaFile.swift in Sources */,
@@ -545,6 +545,7 @@
 				CODE_SIGN_ENTITLEMENTS = MediaOrganiser/MediaOrganiser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MediaOrganiser/Preview Content\"";
 				DEVELOPMENT_TEAM = Y25855H2YJ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -555,7 +556,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cloudflight.MediaOrganiser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.james.MediaOrganiser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -569,6 +570,7 @@
 				CODE_SIGN_ENTITLEMENTS = MediaOrganiser/MediaOrganiser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MediaOrganiser/Preview Content\"";
 				DEVELOPMENT_TEAM = Y25855H2YJ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -579,7 +581,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cloudflight.MediaOrganiser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.james.MediaOrganiser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};

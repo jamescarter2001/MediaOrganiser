@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SystemmediaFileService {
+class SystemMediaFileService {
     
     func getForPath(path : String, groupData : [String:[MediaFile]]) -> [MediaFile] {
         
